@@ -12,7 +12,7 @@ class InitiativesController < ApplicationController
     end
 
     def create
-        @initiative = current_user.initiatives.new(initiative_params)
+        @initiative = Initiative.new(initiative_params)
         if @initiative.save
             redirect_to :initiatives
         else
