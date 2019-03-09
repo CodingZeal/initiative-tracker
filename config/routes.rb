@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   #devise_for :users
   resources :initiatives
-  root 'initiatives#index'
+  root to: 'initiatives#index'
 end
