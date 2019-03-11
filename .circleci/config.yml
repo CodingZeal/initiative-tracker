@@ -25,7 +25,6 @@ jobs:
             - vendor/bundle
 
       # Setup script
-      - run: cp .env.ci .env
       - run: bundle exec rails db:setup
 
       # Run tests
