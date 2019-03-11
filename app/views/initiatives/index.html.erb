@@ -1,37 +1,37 @@
 <div class="wrapper">
-    <h2>Initiatives</h2>
-    <div class="init-list">
-        <% @initiatives.each do |initiative| %>
-            <div class="card">
-                <h3 class="init-name"><%= initiative.title %></h3>
-                <p class="init-description"><%= initiative.description %></p>
-                <div class="init-footer"><%= image_tag "icon-calendar.svg", class: "icon-target" %>
-                    <div class="card-date">
-                        <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
-                    </div>
-                </div>
-            </div>
-        <% end %>
+  <h2>Initiatives</h2>
+  <div class="init-list">
+  <% @initiatives.each do |initiative| %>
+    <div class="card">
+    <h3 class="init-name"><%= initiative.title %></h3>
+    <p class="init-description"><%= initiative.description %></p>
+    <div class="init-footer"><%= image_tag "icon-calendar.svg", class: "icon-target" %>
+      <div class="card-date">
+      <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
+      </div>
     </div>
+    </div>
+  <% end %>
+  </div>
 </div>
 <div class="wrapper">
-    <h2>New Initiative </h2>
-    <div class="card full-width">
-        <div class="w-form">
-            <%= form_for :initiative, url: initiatives_path do |f| %>
-                
-           
-                    <%= f.label :title, 'Initiative Name', class: 'form-field-label' %>
-                    <%= f.text_field :title, placeholder: 'Enter name here...', maxlength: '256', class: 'form-field w-input' %>
-             
-                    <%= f.label :target_date, 'Target Date', class: 'form-field-label' %>
-                    <%= f.date_field :target_date, value: Date.today + 90, class: 'form-field w-input' %>
-           
-                    <%= f.label :description, 'Description', class: 'form-field-label' %>
-                    <%= f.text_area :description, maxlength: '5000', placeholder: 'Add a description here...', class: 'textarea w-input' %>
-             
-                <%= f.submit 'Submit', class: "btn-primary w-button" %>
-            <% end %>
-        </div>
-    </div>
+  <h2>New Initiative </h2>
+  <div class="card full-width">
+  <div class="w-form">
+    <%= form_for :initiative, url: initiatives_path do |f| %>
+    
+     
+      <%= f.label :title, 'Initiative Name', class: 'form-field-label' %>
+      <%= f.text_field :title, placeholder: 'Enter name here...', maxlength: '256', class: 'form-field w-input' %>
+     
+      <%= f.label :target_date, 'Target Date', class: 'form-field-label' %>
+      <%= f.date_field :target_date, value: Date.today + 90, class: 'form-field w-input' %>
+     
+      <%= f.label :description, 'Description', class: 'form-field-label' %>
+      <%= f.text_area :description, maxlength: '5000', placeholder: 'Add a description here...', class: 'textarea w-input' %>
+     
+    <%= f.submit 'Submit', class: "btn-primary w-button" %>
+    <% end %>
+  </div>
+  </div>
 </div>
