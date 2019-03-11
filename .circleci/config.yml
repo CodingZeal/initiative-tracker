@@ -3,6 +3,10 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.0-node-browsers
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
       - image: circleci/postgres:10.3-alpine
         environment:
           POSTGRES_USER: postgres
@@ -25,13 +29,18 @@ jobs:
             - vendor/bundle
 
       # Setup script
-      - run: bundle exec rails db:setup
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:migrate
+
+      # Linting
+      - run: bundle exec rubocop --parallel
 
       # Run tests
       - run: bundle exec rspec
 
-      # Linting
-      - run: bundle exec rubocop
 
       - store_artifacts:
           path: tmp/screenshot/s
