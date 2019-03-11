@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers
+      - image: circleci/postgres:10.3-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+    steps:
+      - checkout
+
+      # Cache Restoration
+      - restore_cache:
+          keys:
+            - initiative-tracker-bundle-{{ checksum "Gemfile.lock" }}
+            - initiative-tracker-bundle-
+
+      # Update Dependencies
+      - run: bundle install --path vendor/bundle
+
+      - save_cache:
+          key: initiative-tracker-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Setup script
+      - run: cp .env.ci .env
+      - run: bundle exec rails db:setup
+
+      # Run tests
+      - run: bundle exec rspec
+
+      # Linting
+      - run: bundle exec rubocop
+
+      - store_artifacts:
+          path: tmp/screenshots/
