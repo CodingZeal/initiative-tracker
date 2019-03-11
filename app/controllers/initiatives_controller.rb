@@ -5,7 +5,8 @@ class InitiativesController < ApplicationController
     @initiatives = Initiative.all
   end
 
-  def show; end
+  def show; 
+  end
 
   def new
     @initiative = Initiative.new
@@ -16,9 +17,7 @@ class InitiativesController < ApplicationController
     if @initiative.save
       redirect_to :initiatives
     else
-      # render 'initiatives#new'
       render :new
-
     end
   end
 
