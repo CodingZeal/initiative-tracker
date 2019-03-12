@@ -1,16 +1,11 @@
 {
+  "name": "initiative-tracker",
+  "scripts": {},
+  "env": {},
+  "formation": {},
   "addons": [
     "heroku-postgresql"
   ],
-  "buildpacks": [
-
-  ],
-  "env": {
-  },
-  "formation": {
-  },
-  "name": "initiative-tracker",
-  "scripts": {
-  },
+  "buildpacks": [],
   "stack": "heroku-18"
 }
