@@ -33,7 +33,6 @@ jobs:
           name: Database Setup
           command: |
             bundle exec rake db:create
-            bundle exec rake db:migrate
 
       # Linting
       - run: bundle exec rubocop --parallel
