@@ -1,6 +1,8 @@
 <div class="wrapper">
-  <h2>Initiatives</h2>
-  <div><%= link_to "New Initiative", new_initiative_path, class: 'btn-primary w-button' %></div>
+  <div class="w-container w-row">
+    <h2 class="w-col w-col-9">Initiatives</h2>
+    <div class="w-col w-col-3"><%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %></div>
+  </div>
   <div class="init-list">
   <% @initiatives.each do |initiative| %>
     <div class="card">
