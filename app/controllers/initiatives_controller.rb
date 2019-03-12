@@ -5,9 +5,6 @@ class InitiativesController < ApplicationController
     @initiatives = Initiative.all
   end
 
-  def show; 
-  end
-
   def new
     @initiative = Initiative.new
   end
