@@ -1,0 +1,25 @@
+<div class='card full-width'>
+<div class='w-form'>
+  <%= form_for @initiative do |f| %>
+  <% if @initiative.errors.any? %>
+    <ul>
+    <% @initiative.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+
+  <% end %>
+   
+    <%= f.label :title, 'Initiative Name', class: 'form-field-label' %>
+    <%= f.text_field :title, placeholder: 'Enter name here...', maxlength: '256', class: 'form-field w-input' %>
+   
+    <%= f.label :target_date, 'Target Date', class: 'form-field-label' %>
+    <%= f.date_field :target_date, value: Date.today + 90, class: 'form-field w-input' %>
+   
+    <%= f.label :description, 'Description', class: 'form-field-label' %>
+    <%= f.text_area :description, maxlength: '5000', placeholder: 'Add a description here...', class: 'textarea w-input' %>
+   
+  <%= f.submit 'Submit', class: 'btn-primary w-button' %>
+  <% end %>
+</div>
+</div>

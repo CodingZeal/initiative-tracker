@@ -20,4 +20,26 @@ feature 'Visitor creates a new initiative' do
   end
 end
 
+feature 'Visitor edits a initiative' do 
+  background do
+    @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020')
+  end
+  scenario 'clicks initiative on list view' do
+    visit edit_initiative_path(@initiative)
+    expect(page).to have_content('Edit Initiative')
+    expect(@initiative.title).to eq('TestA')
+    expect(@initiative.target_date).to eq Date.new(2020,02,01)
+    expect(@initiative.description).to eq(nil)
+  end
+  scenario 'change initiative name and target date' do
+    visit edit_initiative_path(@initiative)
+    fill_in 'Initiative Name', with: 'TestB'
+    fill_in 'Target Date', with: '01/01/2020'
+    fill_in 'Description', with: 'TestJ'
+    click_button 'Submit'
+    expect(page).to have_content('TestB')
+    expect(page).to_not have_content('TestA')
+  end
+end
+
 

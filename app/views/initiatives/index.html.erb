@@ -1,10 +1,11 @@
 <div class="wrapper">
   <div class="w-container w-row">
-    <h2 class="w-col w-col-8">Initiatives</h2>
-    <div class="w-col w-col-4"><%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %></div>
+    <h2 class="w-col w-col-7">Initiatives</h2>
+    <div class="w-col w-col-5"><%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %></div>
   </div>
   <div class="init-list">
   <% @initiatives.each do |initiative| %>
+    <%= link_to edit_initiative_path(initiative), :style=> "text-decoration: none;" do %>
     <div class="card">
     <h3 class="init-name"><%= initiative.title %></h3>
     <p class="init-description"><%= initiative.description %></p>
@@ -14,6 +15,7 @@
       </div>
     </div>
     </div>
+    <% end %>
   <% end %>
   </div>
 </div>
