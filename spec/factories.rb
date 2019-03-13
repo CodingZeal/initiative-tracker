@@ -6,4 +6,10 @@ FactoryBot.define do
     target_date '01/01/2020'
     completion false
   end
+
+  factory :user do
+    fullname 'Test'
+    email 'email@email.com'
+    # password 'password'
+  end
 end
