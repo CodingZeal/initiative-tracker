@@ -38,6 +38,7 @@ feature 'Visitor edits a initiative' do
     fill_in 'Description', with: 'TestJ'
     click_button 'Submit'
     expect(page).to have_content('TestB')
+    expect(page).to_not have_content('TestA')
   end
 end
 
