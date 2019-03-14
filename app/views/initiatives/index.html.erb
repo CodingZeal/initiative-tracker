@@ -1,23 +1,24 @@
 <div class="wrapper">
-  <div style="float: right">
-    <%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %>
-  </div>
   <div class="w-container w-row">
     <h2 class="w-col w-col-7">Initiatives</h2>
+    <div class="w-col w-col-5">
+      <%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %>
+    </div>
   </div>
   <div class="init-list">
   <% @initiatives.each do |initiative| %>
-    <%= link_to edit_initiative_path(initiative), :style=> "text-decoration: none;" do %>
+    <%= link_to edit_initiative_path(initiative), :style=> "text-decoration: none; hover-border-color: #ababab;" do %>
     <div class="card">
-    <h3 class="init-name"><%= initiative.title %></h3>
-    <p class="init-description"><%= initiative.description %></p>
-    <div class="init-footer"><%= image_tag "icon-calendar.svg", class: "icon-target" %>
-      <div class="card-date">
-      <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
+      <h3 class="init-name"><%= initiative.title %></h3>
+      <p class="init-description"><%= initiative.description %></p>
+      <div class="init-footer">
+        <%= image_tag "icon-calendar.svg", class: "icon-target" %>
+        <div class="card-date">
+          <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
+        </div>
       </div>
-    </div>
-    </div>
     <% end %>
+    </div>
   <% end %>
   </div>
 </div>
