@@ -604,10 +604,10 @@ h5 {
 
 .zeal-img {
   position: relative;
-  top: 20px;
+  top: 25px;
   left: 160px;
   z-index: 11;
-  width: 100px;
+  width: 90px;
 }
 
 .nav-link {
@@ -651,8 +651,6 @@ h5 {
 .form-field-label {
   color: #707070;
   font-weight: 600;
-  position: relative;
-  z-index: 10;
 }
 
 .textarea {
@@ -689,27 +687,4 @@ h5 {
   .card {
     margin-right: 0px;
   }
-}
-
-.logo-style {
-  margin-left: 45%;
-  position: relative;
-  top: 20px;
-  z-index: 21;
-  width: 50%;
-}
-
-.login-style {
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  width: 50%;
-}
-
-.zeal-img {
-  margin-left: 50px;
-  position: relative;
-  top: 50px;
-  left: 50px;
-  z-index: 11;
 }
