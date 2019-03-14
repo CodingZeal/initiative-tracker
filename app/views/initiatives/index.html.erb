@@ -1,9 +1,9 @@
 <div class="wrapper">
-  <div style="float: right">
-    <%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %>
-  </div>
   <div class="w-container w-row">
     <h2 class="w-col w-col-7">Initiatives</h2>
+    <div class="w-col w-col-5">
+      <%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %>
+    </div>
   </div>
 
   <%= render partial: "initiatives", locals: { initiatives: @incompleted_initiatives } %>
