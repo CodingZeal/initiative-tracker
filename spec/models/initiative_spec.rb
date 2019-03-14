@@ -18,18 +18,3 @@ RSpec.describe Initiative, type: :model do
     end
   end
 end
-
-describe 'DELETE destroy', type: :controller do
-    let(:initiative) { build(:initiative) }
-  
-  it "deletes the initiative" do
-    expect(
-      delete :destroy => @initiative 
-    ).to change(Initiative,:count).by(-1)
-  end
-    
-  # it "redirects to initiative#index" do
-  #   delete :destroy, id: @initiative
-  #   response.should redirect_to root_to_url
-  # end
-end
