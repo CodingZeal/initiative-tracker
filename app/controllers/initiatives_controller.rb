@@ -30,6 +30,13 @@ class InitiativesController < ApplicationController
       render 'initiatives#edit'
     end
   end
+  
+  def destroy
+    if @initiative.destroy
+      flash[:notice] = "Initiative: #{@initiative.title} was successfully deleted"
+      redirect_to root_path
+    end
+  end
 
   private
 
