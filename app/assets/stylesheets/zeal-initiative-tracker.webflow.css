@@ -600,12 +600,92 @@ h5 {
 
 .check-box-completion {
   margin: 5px;
+  margin-right: 13px
 }
 
 .zeal-img {
-  margin-left: 50px;
   position: relative;
-  top: 50px;
-  left: 50px;
+  top: 25px;
+  left: 160px;
   z-index: 11;
+  width: 90px;
+}
+
+.nav-link {
+  float: right;  
+  position: relative;
+  top: 15px;
+  right: 50px;
+  z-index: 11;
+}
+
+.form-field {
+  margin-bottom: 20px;
+  border-style: none none solid;
+  border-width: 1px;
+  border-color: #000 #000 #ababab;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #f8f8f8;
+}
+
+.form-field:focus {
+  border-bottom-color: #ffb648;
+}
+
+.form-field::-webkit-input-placeholder {
+  color: #cfcfcf;
+}
+
+.form-field:-ms-input-placeholder {
+  color: #cfcfcf;
+}
+
+.form-field::-ms-input-placeholder {
+  color: #cfcfcf;
+}
+
+.form-field::placeholder {
+  color: #cfcfcf;
+}
+
+.form-field-label {
+  color: #707070;
+  font-weight: 600;
+}
+
+.textarea {
+  margin-bottom: 20px;
+  border-style: none none solid;
+  border-width: 1px;
+  border-color: #000 #000 #ababab;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #fafafa;
+}
+
+.textarea:focus {
+  border-bottom-color: #ffb648;
+}
+
+.textarea::-webkit-input-placeholder {
+  color: #cfcfcf;
+}
+
+.textarea:-ms-input-placeholder {
+  color: #cfcfcf;
+}
+
+.textarea::-ms-input-placeholder {
+  color: #cfcfcf;
+}
+
+.textarea::placeholder {
+  color: #cfcfcf;
+}
+
+@media (max-width: 479px) {
+  .card {
+    margin-right: 0px;
+  }
 }
