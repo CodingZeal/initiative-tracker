@@ -25,6 +25,7 @@ h3 {
   margin-bottom: 0px;
   font-size: 24px;
   font-weight: 700;
+ 
 }
 
 h4 {
@@ -599,4 +600,12 @@ h5 {
 
 .check-box-completion {
   margin: 5px;
+}
+
+.zeal-img {
+  margin-left: 50px;
+  position: relative;
+  top: 50px;
+  left: 50px;
+  z-index: 11;
 }
