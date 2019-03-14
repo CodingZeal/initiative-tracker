@@ -16,7 +16,7 @@
                 <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
               </div>
               <div class="w-col w-col-2" style="padding: 0;">
-                <%= link_to initiative_path(initiative), method: :delete, data: { confirm: 'Are you sure?' }, :style=> "text-decoration: none;" do %>
+                <%= link_to initiative_path(initiative), method: :delete, data: { confirm: "Are you sure you would like to delete Initative: #{initiative.title}" }, :style=> "text-decoration: none;" do %>
                   <%= image_tag "icon-delete.svg" %>
                 <% end %>
               </div>
