@@ -1,12 +1,11 @@
 <div class="wrapper">
+  <div style="float: right">
+    <%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %>
+  </div>
   <div class="w-container w-row">
     <h2 class="w-col w-col-7">Initiatives</h2>
-    <div class="w-col w-col-5"><%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %></div>
   </div>
   <div class="init-list">
-  <div style="float: right">
-    <%= link_to 'Add User', users_path, class: 'btn-primary w-button' %>
-  </div>
   <% @initiatives.each do |initiative| %>
     <%= link_to edit_initiative_path(initiative), :style=> "text-decoration: none;" do %>
     <div class="card">
