@@ -22,14 +22,14 @@ end
 
 feature 'Visitor edits a initiative' do 
   background do
-    @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020')
+    @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020', :description => 'ice cream')
   end
   scenario 'clicks initiative on list view' do
     visit edit_initiative_path(@initiative)
     expect(page).to have_content('Edit Initiative')
     expect(@initiative.title).to eq('TestA')
     expect(@initiative.target_date).to eq Date.new(2020,02,01)
-    expect(@initiative.description).to eq(nil)
+    expect(@initiative.description).to eq("ice cream")
   end
   scenario 'change initiative name and target date' do
     visit edit_initiative_path(@initiative)
@@ -43,7 +43,12 @@ feature 'Visitor edits a initiative' do
   scenario "delete initiative from list view" do
     visit root_path
     expect { click_link '', :style => "text-decoration: none;" }.to change(Initiative, :count).by(-1)
-    expect(page).to_not have_content('TestA')
+    expect(page).to_not have_content('ice cream')
+  end
+  scenario "display flash message confirming initiative deletion" do
+    visit root_path
+    expect { click_link '', :style => "text-decoration: none;" }.to change(Initiative, :count).by(-1)
+    expect(page).to have_content('deleted')
   end
 end
 
