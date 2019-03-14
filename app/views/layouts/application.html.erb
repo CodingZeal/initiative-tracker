@@ -9,12 +9,18 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <div class="wrapper">
-    <% if flash[:notice] %>
-      <p><%= flash[:notice] %></p>
-    <% end %>
-  </div> 
-  <%= yield %>
+    <body>
+      <div class="wrapper-bg-white-block">
+        <h3 style="float: right"><%= link_to "User List", users_path %></h3>
+        <div class="zeal-img"><%= image_tag("logo.png") %></div>
+      </div>
+      <div class="wrapper">
+        <% if flash[:notice] %>
+          <p><%= flash[:notice] %></p>
+        <% end %>
+      </div> 
+      <div class="container">
+        <%= yield %>
+      </div>
   </body>
 </html>
