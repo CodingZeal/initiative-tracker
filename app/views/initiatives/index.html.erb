@@ -4,18 +4,26 @@
     <div class="w-col w-col-5"><%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %></div>
   </div>
   <div class="init-list">
-  <% @initiatives.each do |initiative| %>
-    <%= link_to edit_initiative_path(initiative), :style=> "text-decoration: none;" do %>
-    <div class="card">
-    <h3 class="init-name"><%= initiative.title %></h3>
-    <p class="init-description"><%= initiative.description %></p>
-    <div class="init-footer"><%= image_tag "icon-calendar.svg", class: "icon-target" %>
-      <div class="card-date">
-      <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
-      </div>
-    </div>
-    </div>
+    <% @initiatives.each do |initiative| %>
+      <%= link_to edit_initiative_path(initiative), :style=> "text-decoration: none;" do %>
+        <div class="card">
+          <h3 class="init-name"><%= initiative.title %></h3>
+          <p class="init-description"><%= initiative.description %></p>
+          <div>
+            <div class="init-footer w-row">
+              <div class="w-col w-col-2" style="padding: 0;"><%= image_tag "icon-calendar.svg", class: "icon-target" %></div>
+              <div class="card-date w-col w-col-10">
+                <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
+              </div>
+              <div class="w-col w-col-2" style="padding: 0;">
+                <%= link_to initiative_path(initiative), method: :delete, data: { confirm: 'Are you sure?' }, :style=> "text-decoration: none;" do %>
+                  <%= image_tag "icon-delete.svg" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
   </div>
 </div>

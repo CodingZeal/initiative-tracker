@@ -40,6 +40,11 @@ feature 'Visitor edits a initiative' do
     expect(page).to have_content('TestB')
     expect(page).to_not have_content('TestA')
   end
+  # scenario 'delete initiative from list view' do 
+  #   delete :destroy, :id => @initiative
+  #   expect(response.status).to eq 200
+  # end
 end
+
 
 

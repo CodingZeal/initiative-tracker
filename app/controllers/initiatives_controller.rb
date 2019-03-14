@@ -30,7 +30,11 @@ class InitiativesController < ApplicationController
       render 'initiatives#edit'
     end
   end
-
+  
+  def destroy
+    @initiative.destroy
+    redirect_to root_path
+  end
   private
 
   def initiative_params
