@@ -11,10 +11,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+<<<<<<< HEAD
     if @user.save
       redirect_to :users
     else
       render :new
+=======
+
+      if @user.save
+        redirect_to :users
+      else  
+>>>>>>> deleted unnecessary files, cleaned up white spaces, rspec for users pass
     end
   end
 
