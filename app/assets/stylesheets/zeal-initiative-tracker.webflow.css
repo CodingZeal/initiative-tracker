@@ -604,10 +604,10 @@ h5 {
 
 .zeal-img {
   position: relative;
-  top: 25px;
+  top: 20px;
   left: 160px;
   z-index: 11;
-  width: 90px;
+  width: 100px;
 }
 
 .nav-link {

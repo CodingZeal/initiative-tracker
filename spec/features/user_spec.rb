@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'capybara/rspec'
+require 'capybara/rspec' 
+
+feature 'Admin can see a list of users' do
+  scenario 'clicks user list' do
+    visit root_path
+    click_link 'User List'
+    expect(page).to have_content('Users')
+  end
+end
 
 feature 'Admin can see a list of users' do
   scenario 'clicks user list' do

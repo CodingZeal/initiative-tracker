@@ -31,6 +31,10 @@ class UsersController < ApplicationController
     end
 
     def user_params
+<<<<<<< HEAD
       params.require(:user).permit(:fullname, :email, :is_admin, :team_leader_id, :password)
+=======
+      params.require(:user).permit(:fullname, :email, :is_admin, :team_leader_id)
+>>>>>>> Finished integrated testing, deleted show.html.erb and resolved jason's comments
     end
 end
