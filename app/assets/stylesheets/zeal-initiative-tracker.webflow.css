@@ -689,6 +689,7 @@ h5 {
     margin-right: 0px;
   }
 }
+<<<<<<< HEAD
 
 .logo-style {
   margin-left: 45%;
@@ -708,3 +709,6 @@ h5 {
   padding: 0;
 }
 
+.add-user-btn {
+  float: right;
+}
