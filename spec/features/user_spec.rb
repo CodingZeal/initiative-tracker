@@ -48,3 +48,7 @@ feature 'Admin creates a new user' do
     expect(page).to have_content('email2@email.com')
   end
 end
+
+    
+
+
