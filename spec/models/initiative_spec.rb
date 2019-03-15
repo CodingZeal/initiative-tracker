@@ -27,3 +27,18 @@ describe InitiativesController, type: :controller do
     expect(response).to redirect_to root_path
   end
 end
+
+describe "#index" do
+  it "orders by initiative status" do
+    @initiative = Initiative.new(title: 'initiative1', target_date: "01/01/2020", completion: true)
+    @initiative.save
+    
+    @initiative1 = Initiative.new(title: 'initiative2', target_date: "01/01/2020")
+    @initiative1.save
+
+    initt = Initiative.order('completion DESC').all.to_a
+    init = [@initiative1, @initiative]
+
+    expect(initt).to eq(init)
+  end
+end
