@@ -569,3 +569,7 @@ h5 {
     margin-right: 0px;
   }
 }
+
+.add-user-btn {
+  float: right;
+}
