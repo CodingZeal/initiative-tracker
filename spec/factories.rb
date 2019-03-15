@@ -10,6 +10,5 @@ FactoryBot.define do
   factory :user do
     fullname 'Test'
     email 'email@email.com'
-    # password 'password'
   end
 end
