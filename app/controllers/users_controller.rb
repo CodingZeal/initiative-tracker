@@ -14,9 +14,7 @@ class UsersController < ApplicationController
 
       if @user.save
         redirect_to :users
-      else
-
-      
+      else  
     end
   end
 

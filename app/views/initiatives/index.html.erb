@@ -14,7 +14,8 @@
           <p class="init-description"><%= initiative.description %></p>
           <div>
             <div class="init-footer w-row">
-              <div class="w-col w-col-2" style="padding: 0;"><%= image_tag "icon-calendar.svg", class: "icon-target" %></div>
+              <div class="w-col w-col-2" style="padding: 0;"><%= image_tag "icon-calendar.svg", class: "icon-target" %>
+              </div>
               <div class="card-date w-col w-col-10">
                 <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
               </div>
@@ -28,6 +29,5 @@
         </div>
       <% end %>
     <% end %>
->>>>>>> master
-  </div>
+  
 </div>
