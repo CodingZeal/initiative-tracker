@@ -18,9 +18,10 @@
    
     <%= f.label :description, 'Description', class: 'form-field-label' %>
     <%= f.text_area :description, maxlength: '5000', placeholder: 'Add a description here...', class: 'textarea w-input' %>
-   
-    <%= f.label :completion, 'Completed', class: 'form-field-label' %>
-    <%= f.check_box :completion %>
+    <div class="init-footer">
+    <%= f.label :completion, 'Completed', class: 'form-field-label' -%>
+    <%= f.check_box :completion, :class => "w-checkbox", :style => "margin: 5px" %>
+      </div>
   <%= f.submit 'Submit', class: 'btn-primary w-button' %>
   <% end %>
 </div>
