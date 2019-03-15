@@ -4,7 +4,7 @@ class InitiativesController < ApplicationController
   before_action :find_initiative, only: [:edit, :update, :destroy]
 
   def index
-    @initiatives = Initiative.all
+    @initiatives = Initiative.all.order("completion ASC")
   end
 
   def new
