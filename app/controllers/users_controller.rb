@@ -20,8 +20,12 @@ class UsersController < ApplicationController
 
       if @user.save
         redirect_to :users
+<<<<<<< HEAD
       else  
 >>>>>>> deleted unnecessary files, cleaned up white spaces, rspec for users pass
+=======
+      else
+>>>>>>> resolved whitespace issues and resolved div tag issues, removed inline styling from users/index.html.erb
     end
   end
 
