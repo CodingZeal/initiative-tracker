@@ -54,10 +54,8 @@ feature 'Visitor edits a initiative' do
     visit edit_initiative_path(@initiative)
     check "Completed"
     click_button 'Submit'
-    expect(page).to have_css("img[src*='icon-completion.svg']")
+    expect(page).to have_css("img[src*='icon-completion']")
     expect(page).to have_no_css("img[src*='calendar']")
   end
 end
-
-
 
