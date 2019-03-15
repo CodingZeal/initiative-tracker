@@ -582,3 +582,10 @@ h5 {
     margin-right: 0px;
   }
 }
+<<<<<<< HEAD
+=======
+
+.add-user-btn {
+  float: right;
+}
+>>>>>>> resolved whitespace issues and resolved div tag issues, removed inline styling from users/index.html.erb
