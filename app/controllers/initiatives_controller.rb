@@ -5,7 +5,11 @@ class InitiativesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+<<<<<<< HEAD
     populate_initiative_sets
+=======
+    @initiatives = Initiative.all.order("completion ASC")
+>>>>>>> model test passed, rubocop passed, indicator of completion displayed on individual initiative card, completed initiatives will appear separately from incomplete initiatives on list view page
   end
 
   def new
