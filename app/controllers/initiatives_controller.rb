@@ -41,7 +41,7 @@ class InitiativesController < ApplicationController
   private
 
   def initiative_params
-    params.require(:initiative).permit(:title, :description, :target_date)
+    params.require(:initiative).permit(:title, :description, :target_date, :completion)
   end
   
   def find_initiative
