@@ -8,7 +8,7 @@ feature 'Visitor creates a new initiative' do
   scenario 'clicks new initiative button' do
     visit root_path
     click_link 'New Initiative'
-    expect(page).to have_content('New Initiative')   
+    expect(page).to have_content('New Initiative')
   end
   scenario 'with title target date and description' do
     visit new_initiative_path
@@ -20,7 +20,7 @@ feature 'Visitor creates a new initiative' do
   end
 end
 
-feature 'Visitor edits a initiative' do 
+feature 'Visitor edits a initiative' do
   background do
     @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020', :description => 'ice cream')
   end
