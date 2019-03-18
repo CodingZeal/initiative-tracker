@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       if @user.save
         redirect_to :users
       else
+        render :new
     end
   end
 
