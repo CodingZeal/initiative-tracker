@@ -532,6 +532,8 @@ h5 {
 .form-field-label {
   color: #707070;
   font-weight: 600;
+  position: relative;
+  z-index: 10;
 }
 
 .textarea {
@@ -572,4 +574,17 @@ h5 {
 
 .add-user-btn {
   float: right;
+}
+
+#user_team_leader_id {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#user_is_admin {
+  margin-top: -20px;
+  margin-left: 70px;
+  float: left;
+  position: relative;
+  z-index: 11;
 }
