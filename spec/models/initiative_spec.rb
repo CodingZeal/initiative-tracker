@@ -17,6 +17,7 @@ RSpec.describe Initiative, type: :model do
       end
     end
   end
+<<<<<<< HEAD
 
   context 'scopes' do
     let(:incomplete_initiative) { create(:initiative) }
@@ -49,3 +50,6 @@ describe "#index" do
   end
 end
 >>>>>>> model test passed, rubocop passed, indicator of completion displayed on individual initiative card, completed initiatives will appear separately from incomplete initiatives on list view page
+=======
+end
+>>>>>>> testing WIP

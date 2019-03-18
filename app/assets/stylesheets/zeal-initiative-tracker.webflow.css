@@ -482,6 +482,7 @@ h5 {
   margin-right: 13px;
 }
 
+<<<<<<< HEAD
 .zeal-img {
   position: relative;
   top: 20px;
@@ -704,3 +705,8 @@ h5 {
   position: relative;
   width: 50%;
 }
+=======
+.padding-zero {
+  padding: 0;
+}
+>>>>>>> testing WIP
