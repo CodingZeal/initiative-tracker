@@ -20,6 +20,6 @@ describe InitiativesController, type: :controller do
     initiative1 = Initiative.order(:completion).all.to_a
     initiative2 = [@initiative, @initiative1]
 
-    expect(initt).to eq(init)
+    expect(initiative1).to eq(initiative2)
   end
 end
