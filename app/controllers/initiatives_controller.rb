@@ -7,6 +7,7 @@ class InitiativesController < ApplicationController
   def index
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     populate_initiative_sets
 =======
     @initiatives = Initiative.all.order("completion ASC")
@@ -14,6 +15,11 @@ class InitiativesController < ApplicationController
 =======
     @initiatives = Initiative.all.order(:completion)
 >>>>>>> testing WIP
+=======
+    # @initiatives = Initiative.all
+    @completed_initiatives = Initiative.completed
+    @incompleted_initiatives = Initiative.incompleted
+>>>>>>> modified seperate complete and incomplete initiaves
   end
 
   def new
