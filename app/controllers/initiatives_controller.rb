@@ -4,7 +4,9 @@ class InitiativesController < ApplicationController
   before_action :find_initiative, only: [:edit, :update, :destroy]
 
   def index
-    @initiatives = Initiative.all.order(:completion)
+    # @initiatives = Initiative.all
+    @completed_initiatives = Initiative.completed
+    @incompleted_initiatives = Initiative.incompleted
   end
 
   def new
