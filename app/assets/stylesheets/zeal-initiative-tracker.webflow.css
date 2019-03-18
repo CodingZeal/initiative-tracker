@@ -651,6 +651,8 @@ h5 {
 .form-field-label {
   color: #707070;
   font-weight: 600;
+  position: relative;
+  z-index: 10;
 }
 
 .textarea {

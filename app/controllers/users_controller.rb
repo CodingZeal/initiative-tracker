@@ -36,9 +36,13 @@ class UsersController < ApplicationController
 
     def user_params
 <<<<<<< HEAD
+<<<<<<< HEAD
       params.require(:user).permit(:fullname, :email, :is_admin, :team_leader_id, :password)
 =======
       params.require(:user).permit(:fullname, :email, :is_admin, :team_leader_id)
 >>>>>>> Finished integrated testing, deleted show.html.erb and resolved jason's comments
+=======
+      params.require(:user).permit(:fullname, :email, :is_admin, :team_leader_id, :password)
+>>>>>>> added css for checkbox and dropdown, added dropdown functionality, added required password field, added logic to user model, testing WIP
     end
 end
