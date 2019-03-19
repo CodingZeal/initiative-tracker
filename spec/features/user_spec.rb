@@ -21,6 +21,7 @@ feature 'Admin creates a new user' do
     visit new_user_path
     fill_in 'Full Name', with: 'Test'
     fill_in 'Email', with: 'email@email.com'
+    fill_in 'Password', with: '123456'
     check 'Is Admin'
     click_button 'Submit'
     expect(page).to have_content('Test')
@@ -31,19 +32,19 @@ feature 'Admin creates a new user' do
     visit new_user_path
     fill_in 'Full Name', with: 'Test1'
     fill_in 'Email', with: 'email1@email.com'
-    fill_in 'Team Leader', with: '1'
+    fill_in 'Password', with: '123456'
+    expect(page).to have_selector '#user_team_leader_id'
     click_button 'Submit'
     expect(page).to have_content('Test1')
     expect(page).to have_content('email1@email.com')
-    expect(page).to have_content('Team Leader')
   end
   scenario 'with attributes for Team Member' do
     visit new_user_path
     fill_in 'Full Name', with: 'Test2'
     fill_in 'Email', with: 'email2@email.com'
+    fill_in 'Password', with: '123456'
     click_button 'Submit'
     expect(page).to have_content('Test2')
     expect(page).to have_content('email2@email.com')
-    expect(page).to have_content('Team Member')
   end
 end
