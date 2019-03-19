@@ -18,6 +18,7 @@ RSpec.describe Initiative, type: :model do
     end
   end
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   context 'scopes' do
     let(:incomplete_initiative) { create(:initiative) }
@@ -53,3 +54,6 @@ end
 =======
 end
 >>>>>>> testing WIP
+=======
+end
+>>>>>>> completed initiative controller testing
