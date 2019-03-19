@@ -57,3 +57,5 @@ feature 'Visitor edits a initiative' do
     expect(page).to have_no_css("img[src*='calendar']")
   end
 end
+
+
