@@ -8,18 +8,19 @@ describe InitiativesController, type: :controller do
     expect(response).to redirect_to root_path
   end
 end
-  
+
 describe InitiativesController, type: :controller do
-    it "orders by initiative status" do
-    @initiative = Initiative.new(title: 'initiative1', target_date: "01/01/2020", completion: true)
-    @initiative.save
-    
-    @initiative1 = Initiative.new(title: 'initiative2', target_date: "01/01/2020")
-    @initiative1.save
+  let!(:initiative) { create(:initiative) }
+  it "assign incompleted initiatives" do
+    incompleted_initiatives = Initiative.incompleted
+    expect(incompleted_initiatives).to eq([initiative])
+  end
+end
 
-    initiative1 = Initiative.order(:completion).all.to_a
-    initiative2 = [@initiative, @initiative1]
-
-    expect(initiative1).to eq(initiative2)
+describe InitiativesController, type: :controller do
+  let!(:initiative) { create(:initiative) }
+  it "assign completed initiatives" do
+    completed_initiatives = Initiative.completed
+    expect(completed_initiatives).to eq([])
   end
 end
