@@ -17,4 +17,20 @@ RSpec.describe Initiative, type: :model do
       end
     end
   end
+
+  describe InitiativesController, type: :controller do
+    let!(:initiative) { create(:initiative) }
+    it "assign incompleted initiatives" do
+      incompleted_initiatives = Initiative.incompleted
+      expect(incompleted_initiatives).to eq([initiative])
+    end
+  end
+
+  describe InitiativesController, type: :controller do
+    let!(:initiative) { create(:initiative) }
+    it "assign completed initiatives" do
+      completed_initiatives = Initiative.completed
+      expect(completed_initiatives).to eq([])
+    end
+  end
 end

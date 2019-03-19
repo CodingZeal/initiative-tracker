@@ -11,16 +11,27 @@ end
 
 describe InitiativesController, type: :controller do
   let!(:initiative) { create(:initiative) }
-  it "assign incompleted initiatives" do
-    incompleted_initiatives = Initiative.incompleted
-    expect(incompleted_initiatives).to eq([initiative])
+  it "assigns initiatves to @completed_initiatives and @incompleted_initiatives" do
+    get :index
+    expect(assigns(:incompleted_initiatives)).to eq([initiative])
+    expect(assigns(:completed_initiatives)).to eq([])
   end
 end
 
 describe InitiativesController, type: :controller do
   let!(:initiative) { create(:initiative) }
-  it "assign completed initiatives" do
-    completed_initiatives = Initiative.completed
-    expect(completed_initiatives).to eq([])
+
+  it "update initiatives" do
+    params = {
+      title: 'Test',
+      target_date: Date.new(2020,02,01),
+      completion: true
+    }
+    put :update, params: {id: initiative.id, initiative: params}
+    initiative.reload
+    params.keys.each do |key|
+      expect(initiative.attributes[key.to_s]).to eq(params[key])
+    end
+    expect(response).to redirect_to root_path
   end
 end
