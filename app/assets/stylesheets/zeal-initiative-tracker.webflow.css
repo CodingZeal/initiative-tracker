@@ -709,14 +709,10 @@ h5 {
 .padding-zero {
   padding: 0;
 }
-=======
->>>>>>> added css for checkbox and dropdown, added dropdown functionality, added required password field, added logic to user model, testing WIP
 
 .add-user-btn {
   float: right;
 }
-<<<<<<< HEAD
-=======
 
 #user_team_leader_id {
   width: 100%;
@@ -730,4 +726,18 @@ h5 {
   position: relative;
   z-index: 11;
 }
->>>>>>> added css for checkbox and dropdown, added dropdown functionality, added required password field, added logic to user model, testing WIP
+
+.logo-style {
+  margin-left: 45%;
+  position: relative;
+  top: 20px;
+  z-index: 21;
+  width: 50%;
+}
+
+.login-style {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 50%;
+}
