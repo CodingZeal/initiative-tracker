@@ -58,4 +58,3 @@ feature 'Visitor edits a initiative' do
   end
 end
 
-
