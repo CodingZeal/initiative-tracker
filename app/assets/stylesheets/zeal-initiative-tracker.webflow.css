@@ -246,7 +246,6 @@ h5 {
 
 .wrapper-bg-white-block {
   background-color: #fff;
-  background-image: url('../images/bg-white-block.jpg');
   background-position: 0px 0px;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -587,4 +586,19 @@ h5 {
   float: left;
   position: relative;
   z-index: 11;
+}
+
+.logo-style {
+  margin-left: 45%;
+  position: relative;
+  top: 20px;
+  z-index: 21;
+  width: 50%;
+}
+
+.login-style {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 50%;
 }
