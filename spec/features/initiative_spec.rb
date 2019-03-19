@@ -3,7 +3,6 @@
 require 'rails_helper'
 require 'capybara/rspec'
 
-
 feature 'Visitor creates a new initiative' do
   scenario 'clicks new initiative button' do
     visit root_path
@@ -22,7 +21,7 @@ end
 
 feature 'Visitor edits a initiative' do
   background do
-    @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020', :description => 'ice cream')
+    @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020', :description => 'ice cream', :completion => false)
   end
   scenario 'clicks initiative on list view' do
     visit edit_initiative_path(@initiative)
@@ -42,13 +41,13 @@ feature 'Visitor edits a initiative' do
   end
   scenario "delete initiative from list view" do
     visit root_path
-    expect { click_link '', :style => "text-decoration: none;" }.to change(Initiative, :count).by(-1)
+    click_on(class: 'no-link')
     expect(page).to_not have_content('ice cream')
   end
   scenario "display flash message confirming initiative deletion" do
     visit root_path
-    expect { click_link '', :style => "text-decoration: none;" }.to change(Initiative, :count).by(-1)
-    expect(page).to have_content('deleted')    
+    expect { click_link('delete-initiative' )}.to change(Initiative, :count).by(-1)
+    expect(page).to have_content('deleted')
   end
   scenario 'click a completion checkbox' do
     visit edit_initiative_path(@initiative)

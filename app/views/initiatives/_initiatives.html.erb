@@ -1,7 +1,7 @@
 <div class="init-list">
-  <% initiatives.each do |initiative| %>
-    <div class="card">
-      <%= link_to edit_initiative_path(initiative), :style=> "text-decoration: none;" do %>
+<% initiatives.each do |initiative| %>
+  <%= link_to edit_initiative_path(initiative), :style=> "text-decoration: none;" do %>
+      <div class="card">
         <h3 class="init-name"><%= initiative.title %></h3>
         <p class="init-description"><%= initiative.description %></p>
         <div>
@@ -11,13 +11,13 @@
               <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
             </div>
             <div class="w-col w-col-2 padding-zero">
-              <%= link_to initiative_path(initiative), method: :delete, data: { confirm: "Are you sure you would like to delete Initative: #{initiative.title}" }, :style=> "text-decoration: none;" do %>
+              <%= link_to initiative_path(initiative), method: :delete, data: { confirm: "Are you sure you would like to delete Initative: #{initiative.title}" }, :class => "no-link", :id => "delete-initiative" do %>
                 <%= image_tag "icon-delete.svg" %>
               <% end %>
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
