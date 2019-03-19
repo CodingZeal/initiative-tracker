@@ -594,3 +594,7 @@ h5 {
 .no-link {
   text-decoration: none;
 }
+
+.check-box-completion {
+  margin: 5px;
+}
