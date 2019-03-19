@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   def index
     @users = User.all
   end
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
       render :new
 =======
 
+<<<<<<< HEAD
       if @user.save
         redirect_to :users
 <<<<<<< HEAD
@@ -26,6 +28,12 @@ class UsersController < ApplicationController
 =======
       else
 >>>>>>> resolved whitespace issues and resolved div tag issues, removed inline styling from users/index.html.erb
+=======
+    if @user.save
+      redirect_to :users
+    else
+      render :new
+>>>>>>> login page functional, WIP testing, applied css for login page
     end
   end
 
