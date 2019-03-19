@@ -706,3 +706,18 @@ h5 {
   position: relative;
   z-index: 11;
 }
+
+.logo-style {
+  margin-left: 45%;
+  position: relative;
+  top: 20px;
+  z-index: 21;
+  width: 50%;
+}
+
+.login-style {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 50%;
+}
