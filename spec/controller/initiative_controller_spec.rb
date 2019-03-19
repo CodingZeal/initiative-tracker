@@ -20,18 +20,16 @@ end
 
 describe InitiativesController, type: :controller do
   let!(:initiative) { create(:initiative) }
+  let!(:initiative2) { create(:initiative) }
 
   it "update initiatives" do
     params = {
-      title: 'Test',
-      target_date: Date.new(2020,02,01),
       completion: true
     }
     put :update, params: {id: initiative.id, initiative: params}
-    initiative.reload
-    params.keys.each do |key|
-      expect(initiative.attributes[key.to_s]).to eq(params[key])
-    end
+
     expect(response).to redirect_to root_path
+    expect(assigns(:incompleted_initiatives)).to eq([initiative2])
+    expect(assigns(:completed_initiatives)).to eq([initiative])
   end
 end

@@ -4,8 +4,7 @@ class InitiativesController < ApplicationController
   before_action :find_initiative, only: [:edit, :update, :destroy]
 
   def index
-    @completed_initiatives = Initiative.completed
-    @incompleted_initiatives = Initiative.incompleted
+    populate_initiative_sets
   end
 
   def new
@@ -15,6 +14,7 @@ class InitiativesController < ApplicationController
   def create
     @initiative = Initiative.new(initiative_params)
     if @initiative.save
+      populate_initiative_sets
       redirect_to :initiatives
     else
       render :new
@@ -26,6 +26,7 @@ class InitiativesController < ApplicationController
 
   def update
     if @initiative.update(initiative_params)
+      populate_initiative_sets
       redirect_to root_path
     else
       render 'initiatives#edit'
@@ -47,5 +48,10 @@ class InitiativesController < ApplicationController
 
   def find_initiative
     @initiative = Initiative.find(params[:id])
+  end
+
+  def populate_initiative_sets
+    @completed_initiatives = Initiative.completed
+    @incompleted_initiatives = Initiative.incompleted
   end
 end
