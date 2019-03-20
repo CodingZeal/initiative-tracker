@@ -48,6 +48,13 @@ feature 'Visitor edits a initiative' do
   scenario "display flash message confirming initiative deletion" do
     visit root_path(user)
     expect { click_link '', :style => "text-decoration: none;" }.to change(Initiative, :count).by(-1)
-    expect(page).to have_content('deleted')
+    expect(page).to have_content('deleted')    
+  end
+  scenario 'click a completion checkbox' do
+    visit edit_initiative_path(@initiative)
+    check "Completed"
+    click_button 'Submit'
+    expect(page).to have_css("img[src*='icon-completion']")
+    expect(page).to have_no_css("img[src*='calendar']")
   end
 end
