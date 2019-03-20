@@ -2,16 +2,15 @@
 
 require 'rails_helper'
 require 'capybara/rspec'
+include RequestHelpers
 
 
 feature 'Visitor creates a new initiative' do
+  let(:user){ create_logged_in_user }
   scenario 'clicks new initiative button' do
-    visit root_path
-    click_link 'New Initiative'
+    visit root_path(user)
     expect(page).to have_content('New Initiative')
-  end
-  scenario 'with title target date and description' do
-    visit new_initiative_path
+    click_link 'New Initiative'
     fill_in 'Initiative Name', with: 'TestJ'
     fill_in 'Target Date', with: '01/01/2020'
     fill_in 'Description', with: 'TestJ'
@@ -21,18 +20,19 @@ feature 'Visitor creates a new initiative' do
 end
 
 feature 'Visitor edits a initiative' do
+  let(:user){ create_logged_in_user }
   background do
     @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020', :description => 'ice cream')
   end
   scenario 'clicks initiative on list view' do
-    visit edit_initiative_path(@initiative)
+    visit edit_initiative_path(@initiative, user)
     expect(page).to have_content('Edit Initiative')
     expect(@initiative.title).to eq('TestA')
     expect(@initiative.target_date).to eq Date.new(2020,02,01)
     expect(@initiative.description).to eq("ice cream")
   end
   scenario 'change initiative name and target date' do
-    visit edit_initiative_path(@initiative)
+    visit edit_initiative_path(@initiative, user)
     fill_in 'Initiative Name', with: 'TestB'
     fill_in 'Target Date', with: '01/01/2020'
     fill_in 'Description', with: 'TestJ'
@@ -41,16 +41,13 @@ feature 'Visitor edits a initiative' do
     expect(page).to_not have_content('TestA')
   end
   scenario "delete initiative from list view" do
-    visit root_path
+    visit root_path(user)
     expect { click_link '', :style => "text-decoration: none;" }.to change(Initiative, :count).by(-1)
     expect(page).to_not have_content('ice cream')
   end
   scenario "display flash message confirming initiative deletion" do
-    visit root_path
+    visit root_path(user)
     expect { click_link '', :style => "text-decoration: none;" }.to change(Initiative, :count).by(-1)
     expect(page).to have_content('deleted')
   end
 end
-
-
-
