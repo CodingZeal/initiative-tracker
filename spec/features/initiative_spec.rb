@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+
 require 'rails_helper'
 require 'capybara/rspec'
 
@@ -57,4 +58,3 @@ feature 'Visitor edits a initiative' do
     expect(page).to have_no_css("img[src*='calendar']")
   end
 end
-
