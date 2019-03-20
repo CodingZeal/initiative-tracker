@@ -1,6 +1,6 @@
 <div class="init-list">
-<% initiatives.each do |initiative| %>
-  <%= link_to edit_initiative_path(initiative), :style=> "text-decoration: none;" do %>
+  <% initiatives.each do |initiative| %>
+    <%= link_to edit_initiative_path(initiative), :style=> "text-decoration: none;" do %>
       <div class="card">
         <h3 class="init-name"><%= initiative.title %></h3>
         <p class="init-description"><%= initiative.description %></p>
