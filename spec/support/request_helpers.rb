@@ -13,7 +13,4 @@ module RequestHelpers
     login(admin)
     admin
   end
-  
-
-
 end
