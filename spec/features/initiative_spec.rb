@@ -41,17 +41,17 @@ feature 'Visitor edits a initiative' do
     expect(page).to_not have_content('TestA')
   end
   scenario "delete initiative from list view" do
-    visit root_path
-    click_on(class: 'no-link')
+    visit root_path(user)
+    expect { click_link '', :class => "no-link" }.to change(Initiative, :count).by(-1)
     expect(page).to_not have_content('ice cream')
   end
   scenario "display flash message confirming initiative deletion" do
-    visit root_path
-    expect { click_link('delete-initiative' )}.to change(Initiative, :count).by(-1)
+    visit root_path(user)
+    expect { click_link '', :class => "no-link" }.to change(Initiative, :count).by(-1)
     expect(page).to have_content('deleted')
   end
   scenario 'click a completion checkbox' do
-    visit edit_initiative_path(@initiative)
+    visit edit_initiative_path(@initiative, user)
     check "Completed"
     click_button 'Submit'
     expect(page).to have_css("img[src*='icon-completion']")
