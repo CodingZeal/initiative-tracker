@@ -13,7 +13,9 @@
     <div class="wrapper-bg-white-block">
       <% if user_signed_in? %>
       <div class="nav-link">
-        <%= link_to "User List", users_path, class: "no-link" %>
+        <% if current_user.is_admin? %>
+          <%= link_to "User List", users_path, class: "no-link" %>
+        <% end %>
         <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "no-link" %>
       </div>
       <% end %>
