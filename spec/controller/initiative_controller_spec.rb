@@ -1,7 +1,10 @@
 require 'rails_helper'
+include ControllerHelpers
 
 describe InitiativesController, type: :controller do
+  login_user
   let!(:initiative) { create(:initiative) }
+  let(:initiative2) { create(:initiative) }
 
   it "deletes the initiative" do
     expect{ delete :destroy, params: {id: initiative.id}}.to change(Initiative,:count).by(-1)
