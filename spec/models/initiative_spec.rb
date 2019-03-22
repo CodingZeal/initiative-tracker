@@ -17,13 +17,17 @@ RSpec.describe Initiative, type: :model do
       end
     end
   end
-end
 
-describe InitiativesController, type: :controller do
-  let!(:initiative) { create(:initiative) }
+  context 'scopes' do
+    let(:incomplete_initiative) { create(:initiative) }
+    let(:completed_initiative) { create(:initiative, completion: true) }
 
-  it "deletes the initiative" do
-    expect{ delete :destroy, params: {id: initiative.id}}.to change(Initiative,:count).by(-1)
-    expect(response).to redirect_to root_path
+    it "assign incompleted initiatives" do
+      expect(Initiative.incompleted).to eq([incomplete_initiative])
+    end
+
+    it "assign completed initiatives" do
+      expect(Initiative.completed).to eq([completed_initiative])
+    end
   end
 end

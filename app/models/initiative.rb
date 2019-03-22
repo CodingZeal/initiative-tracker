@@ -4,5 +4,6 @@ class Initiative < ApplicationRecord
   validates :title, presence: true
   validates :target_date, presence: true
 
-  # belongs_to :user
+  scope :completed, -> {where(completion: true)}
+  scope :incompleted, -> {where(completion: false)}
 end
