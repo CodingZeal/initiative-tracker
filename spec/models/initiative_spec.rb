@@ -17,8 +17,6 @@ RSpec.describe Initiative, type: :model do
       end
     end
   end
-<<<<<<< HEAD
-<<<<<<< HEAD
 
   context 'scopes' do
     let(:incomplete_initiative) { create(:initiative) }
@@ -33,27 +31,3 @@ RSpec.describe Initiative, type: :model do
     end
   end
 end
-<<<<<<< HEAD
-=======
-
-describe "#index" do
-  it "orders by initiative status" do
-    @initiative = Initiative.new(title: 'initiative1', target_date: "01/01/2020", completion: true)
-    @initiative.save
-    
-    @initiative1 = Initiative.new(title: 'initiative2', target_date: "01/01/2020")
-    @initiative1.save
-
-    initt = Initiative.order('completion DESC').all.to_a
-    init = [@initiative1, @initiative]
-
-    expect(initt).to eq(init)
-  end
-end
->>>>>>> model test passed, rubocop passed, indicator of completion displayed on individual initiative card, completed initiatives will appear separately from incomplete initiatives on list view page
-=======
-end
->>>>>>> testing WIP
-=======
-end
->>>>>>> completed initiative controller testing
