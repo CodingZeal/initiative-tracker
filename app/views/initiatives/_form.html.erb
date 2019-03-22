@@ -9,19 +9,21 @@
     </ul>
 
   <% end %>
-   
+
     <%= f.label :title, 'Initiative Name', class: 'form-field-label' %>
     <%= f.text_field :title, placeholder: 'Enter name here...', maxlength: '256', class: 'form-field w-input' %>
-   
+
     <%= f.label :target_date, 'Target Date', class: 'form-field-label' %>
     <%= f.date_field :target_date, value: Date.today + 90, class: 'form-field w-input' %>
-   
+
     <%= f.label :description, 'Description', class: 'form-field-label' %>
     <%= f.text_area :description, maxlength: '5000', placeholder: 'Add a description here...', class: 'textarea w-input' %>
+  
     <div class="init-footer">
     <%= f.label :completion, 'Completed', class: 'form-field-label' -%>
     <%= f.check_box :completion, :class => "w-checkbox", :style => "margin: 5px" %>
       </div>
+
   <%= f.submit 'Submit', class: 'btn-primary w-button' %>
   <% end %>
 </div>

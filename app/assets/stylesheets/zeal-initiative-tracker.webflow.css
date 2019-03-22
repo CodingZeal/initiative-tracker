@@ -250,6 +250,8 @@ h5 {
   background-position: 0px 0px;
   background-size: 100%;
   background-repeat: no-repeat;
+  position: relative;
+  z-index: 10;
 }
 
 .wrapper-bg-white-block.sg-bg-board {
@@ -288,6 +290,8 @@ h5 {
   font-family: Lato, sans-serif;
   font-size: 16px;
   line-height: 1.4;
+  position: relative;
+  z-index: 1;
 }
 
 .btn-outline {
@@ -477,4 +481,110 @@ h5 {
   width: 30px;
   height: 30px;
   margin-right: 13px;
+}
+
+.zeal-img {
+  position: relative;
+  top: 20px;
+  left: 160px;
+  z-index: 11;
+  width: 100px;
+}
+
+.nav-link {
+  float: right;  
+  position: relative;
+  top: 15px;
+  right: 50px;
+  z-index: 11;
+}
+
+.form-field {
+  margin-bottom: 20px;
+  border-style: none none solid;
+  border-width: 1px;
+  border-color: #000 #000 #ababab;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #f8f8f8;
+}
+
+.form-field:focus {
+  border-bottom-color: #ffb648;
+}
+
+.form-field::-webkit-input-placeholder {
+  color: #cfcfcf;
+}
+
+.form-field:-ms-input-placeholder {
+  color: #cfcfcf;
+}
+
+.form-field::-ms-input-placeholder {
+  color: #cfcfcf;
+}
+
+.form-field::placeholder {
+  color: #cfcfcf;
+}
+
+.form-field-label {
+  color: #707070;
+  font-weight: 600;
+  position: relative;
+  z-index: 10;
+}
+
+.textarea {
+  margin-bottom: 20px;
+  border-style: none none solid;
+  border-width: 1px;
+  border-color: #000 #000 #ababab;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #fafafa;
+}
+
+.textarea:focus {
+  border-bottom-color: #ffb648;
+}
+
+.textarea::-webkit-input-placeholder {
+  color: #cfcfcf;
+}
+
+.textarea:-ms-input-placeholder {
+  color: #cfcfcf;
+}
+
+.textarea::-ms-input-placeholder {
+  color: #cfcfcf;
+}
+
+.textarea::placeholder {
+  color: #cfcfcf;
+}
+
+@media (max-width: 479px) {
+  .card {
+    margin-right: 0px;
+  }
+}
+
+.add-user-btn {
+  float: right;
+}
+
+#user_team_leader_id {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#user_is_admin {
+  margin-top: -20px;
+  margin-left: 70px;
+  float: left;
+  position: relative;
+  z-index: 11;
 }

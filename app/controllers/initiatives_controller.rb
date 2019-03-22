@@ -30,7 +30,7 @@ class InitiativesController < ApplicationController
       render 'initiatives#edit'
     end
   end
-  
+
   def destroy
     if @initiative.destroy
       flash[:notice] = "Initiative: #{@initiative.title} was successfully deleted"
@@ -43,7 +43,7 @@ class InitiativesController < ApplicationController
   def initiative_params
     params.require(:initiative).permit(:title, :description, :target_date, :completion)
   end
-  
+
   def find_initiative
     @initiative = Initiative.find(params[:id])
   end

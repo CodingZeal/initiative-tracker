@@ -10,11 +10,20 @@
   </head>
 
   <body>
+    <div class="wrapper-bg-white-block">
+      <div class="nav-link">
+        <%= link_to "User List", users_path, :style=> "text-decoration: none;" %>
+      </div>
+      <div class="zeal-img">
+        <%= image_tag("logo-p-130x130q80.png") %>
+      </div>
+    </div>
+
   <div class="wrapper">
     <% if flash[:notice] %>
       <p><%= flash[:notice] %></p>
     <% end %>
-  </div> 
+  </div>
   <%= yield %>
   </body>
 </html>
