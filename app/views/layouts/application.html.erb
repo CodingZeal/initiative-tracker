@@ -11,9 +11,12 @@
 
   <body>
     <div class="wrapper-bg-white-block">
-      <div class="nav-link">
-        <%= link_to "User List", users_path, :style=> "text-decoration: none;" %>
-      </div>
+      <% if user_signed_in? %>
+        <div class="nav-link">
+          <%= link_to "User List", users_path, class: "no-link" %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "no-link" %>
+        </div>
+      <% end %>
       <div class="logo-style">
         <%= image_tag("logo.png") %>
       </div>

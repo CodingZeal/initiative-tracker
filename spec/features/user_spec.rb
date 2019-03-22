@@ -48,3 +48,12 @@ feature 'Admin creates a new user' do
     expect(page).to have_content('email2@email.com')
   end
 end
+
+feature 'User can log out' do
+  let(:user){ create_logged_in_user }
+  scenario 'clicks logout' do
+    visit root_path(user)
+    click_link 'Logout'
+    expect(page).to have_content('Password')
+  end
+end
