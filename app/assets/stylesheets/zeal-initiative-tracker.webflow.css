@@ -587,6 +587,8 @@ h5 {
   float: left;
   position: relative;
   z-index: 11;
+}
+
 .padding-zero {
   padding: 0;
 }
