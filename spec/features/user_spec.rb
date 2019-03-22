@@ -3,7 +3,7 @@ require 'rails_helper'
 require 'capybara/rspec'
 include RequestHelpers
 feature 'Admin can see a list of users' do
-  let(:admin){ create_logged_in_admin }
+  let(:admin) { create_logged_in_admin }
   scenario 'clicks user list' do
     visit root_path(admin)
     click_link 'User List'
@@ -11,7 +11,7 @@ feature 'Admin can see a list of users' do
   end
 end
 feature 'Admin creates a new user' do
-  let(:admin){ create_logged_in_admin }
+  let(:admin) { create_logged_in_admin }
   scenario 'clicks add user button' do
     visit users_path(@user, admin)
     click_link 'Add User'
@@ -40,7 +40,7 @@ feature 'Admin creates a new user' do
 end
 
 feature 'User can log out' do
-  let(:user){ create_logged_in_user }
+  let(:user) { create_logged_in_user }
   scenario 'clicks logout' do
     visit root_path(user)
     click_link 'Logout'
@@ -48,9 +48,23 @@ feature 'User can log out' do
   end
 end
 feature 'User can\'t see a list of users' do
-  let(:user){ create_logged_in_user }
-  scenario 'clicks user list' do
+  let(:user) { create_logged_in_user }
+  scenario 'user only see logout menu not User List' do
     visit root_path(user)
-    expect(page).to_not have_content('Users')
+    expect(page).to_not have_content('User List')
+    expect(page).to have_content('Logout')
+  end
+end
+
+feature 'Only admin can see users' do
+  let(:user) { create_logged_in_user }
+  let(:admin) { create_logged_in_admin }
+  scenario 'user see flash message from user url' do
+    visit users_path(user)
+    expect(page).to have_content('You are not an admin')
+  end
+  scenario 'admin can not see flash message from user url' do
+    visit users_path(admin)
+    expect(page).to_not have_content('You are not an admin')
   end
 end
