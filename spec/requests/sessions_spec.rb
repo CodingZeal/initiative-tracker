@@ -10,5 +10,6 @@ RSpec.describe 'Sessions' do
     sign_out user
     get root_path
     expect(response).not_to render_template(:index) 
+    expect(response).to redirect_to(:new_user_session) 
   end
 end

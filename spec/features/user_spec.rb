@@ -66,5 +66,6 @@ feature 'Only admin can see users' do
   scenario 'admin can not see flash message from user url' do
     visit users_path(admin)
     expect(page).to_not have_content('You are not an admin')
+    expect(page).to have_content('Users')
   end
 end
