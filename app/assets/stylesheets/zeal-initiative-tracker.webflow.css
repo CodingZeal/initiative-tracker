@@ -615,3 +615,16 @@ h5 {
   position: relative;
   width: 50%;
 }
+
+.nav-buttons {
+  font-family: Lato, sans-serif;
+  color: #ababab;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.currentLink {
+  color: #ffb648;
+}

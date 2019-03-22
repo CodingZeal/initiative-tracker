@@ -9,11 +9,11 @@ class InitiativesController < ApplicationController
   end
 
   def new
-    @initiative = Initiative.new
+    @initiative = current_user.initiatives.build
   end
 
   def create
-    @initiative = Initiative.new(initiative_params)
+    @initiative = current_user.initiatives.build(initiative_params)
     if @initiative.save
       populate_initiative_sets
       redirect_to :initiatives
@@ -44,7 +44,7 @@ class InitiativesController < ApplicationController
   private
 
   def initiative_params
-    params.require(:initiative).permit(:title, :description, :target_date, :completion)
+    params.require(:initiative).permit(:title, :description, :target_date, :completion, :user_id)
   end
 
   def find_initiative
@@ -52,7 +52,8 @@ class InitiativesController < ApplicationController
   end
 
   def populate_initiative_sets
-    @completed_initiatives = Initiative.completed
-    @incompleted_initiatives = Initiative.incompleted
+    @completed_initiatives = Initiative.completed.where(user_id: current_user)
+    @incompleted_initiatives = Initiative.incompleted.where(user_id: current_user)
+    @initiatives = Initiative.where(user_id: current_user)
   end
 end

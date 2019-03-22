@@ -14,9 +14,10 @@
       <% if user_signed_in? %>
       <div class="nav-link">
         <% if current_user.is_admin? %>
-          <%= link_to "User List", users_path, class: "no-link" %>
+          <%= link_to "User List", users_path, class: "nav-buttons  no-link #{request.original_url.include?(users_path) ? "currentLink":""} " %>
         <% end %>
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "no-link" %>
+        <%= link_to "My Initiatives", root_path, class: "nav-buttons no-link  #{request.original_url.include?(root_path) ? "currentLink":""}" %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-buttons no-link" %>
       </div>
       <% end %>
       <div class="zeal-img">
