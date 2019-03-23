@@ -3,6 +3,7 @@
 class InitiativesController < ApplicationController
   before_action :find_initiative, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :right_owner
 
   def index
     populate_initiative_sets
@@ -13,7 +14,7 @@ class InitiativesController < ApplicationController
   end
 
   def create
-    @initiative = Initiative.new(initiative_params)
+    @initiative = current_user.initiatives.build(initiative_params)
     if @initiative.save
       populate_initiative_sets
       redirect_to :initiatives
@@ -52,7 +53,7 @@ class InitiativesController < ApplicationController
   end
 
   def populate_initiative_sets
-    @completed_initiatives = Initiative.completed
-    @incompleted_initiatives = Initiative.incompleted
+    @completed_initiatives = Initiative.where(user_id: current_user).completed
+    @incompleted_initiatives = Initiative.where(user_id: current_user).incompleted
   end
 end
