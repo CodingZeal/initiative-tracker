@@ -3,7 +3,6 @@
 class InitiativesController < ApplicationController
   before_action :find_initiative, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :right_owner
 
   def index
     populate_initiative_sets
@@ -41,15 +40,20 @@ class InitiativesController < ApplicationController
       redirect_to root_path
     end
   end
-
+  
   private
-
+  
   def initiative_params
     params.require(:initiative).permit(:title, :description, :target_date, :completion)
   end
-
+  
   def find_initiative
-    @initiative = Initiative.find(params[:id])
+    @initiative = current_user.initiatives.find_by_id(params[:id])
+    
+    if @initiative.nil?
+      flash[:notice] = "You entered wrong routes"
+      redirect_to root_path
+    end
   end
 
   def populate_initiative_sets

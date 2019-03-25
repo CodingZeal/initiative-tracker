@@ -721,3 +721,16 @@ h5 {
   position: relative;
   width: 50%;
 }
+
+.nav-btn {
+  margin-right: 5px;
+  padding: 5px 5px;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #000;
+}
+
+.nav-btn-color {
+  color : #ffb648;
+}

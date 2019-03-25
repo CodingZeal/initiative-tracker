@@ -13,9 +13,10 @@
     <div class="wrapper-bg-white-block">
         <div class="nav-link">
           <% if current_user.is_admin? %>
-            <%= link_to "User List", users_path, class: "no-link" %>
+            <%= link_to "User List", users_path, class: "nav-btn #{"nav-btn-color" if current_page?(controller: 'users')}" %>
+            <%= link_to "Initiatives", root_path, class: "nav-btn #{"nav-btn-color" if current_page?(root_path)} " %>
           <% end %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "no-link" %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-btn" %>
         </div>
         <div class="logo-style">
           <%= image_tag("logo.png") %>
