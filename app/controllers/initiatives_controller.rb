@@ -51,7 +51,7 @@ class InitiativesController < ApplicationController
     @initiative = current_user.initiatives.find_by_id(params[:id])
     
     if @initiative.nil?
-      flash[:notice] = "You entered wrong routes"
+      flash[:notice] = "Route does not exist. Please check your initiative route."
       redirect_to root_path
     end
   end

@@ -6,10 +6,4 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-  # def right_owner
-  #   unless current_user.id == @initiative.user_id
-  #     flash[:notice] = "You are not an onwer of this initiative"
-  #     redirect_to root_path
-  #   end
-  # end
 end
