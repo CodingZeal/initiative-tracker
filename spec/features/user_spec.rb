@@ -47,4 +47,26 @@ feature 'Admin creates a new user' do
     expect(page).to have_content('Test2')
     expect(page).to have_content('email2@email.com')
   end
+  feature 'Visitor edits a user' do
+    let(:user){ create_logged_in_user }
+    background do
+      @user = User.create!(:fullname => 'TestA', :email => 'testa@testa.com', :password => 'icecream')
+    end
+    scenario 'clicks user on list view' do
+      visit edit_user_path(@user, user)
+      expect(page).to have_content('Edit User')
+      expect(@user.fullname).to eq('TestA')
+      expect(@user.email).to eq('testa@testa.com')
+      expect(@user.password).to eq('icecream')
+    end
+    scenario 'change user name and email' do
+      visit edit_user_path(@user, user)
+      fill_in 'Full Name', with: 'TestB'
+      fill_in 'Email', with: 'testb@testb.com'
+      fill_in 'Password', with: 'bananas'
+      click_button 'Submit'
+      expect(page).to have_content('TestB')
+      expect(page).to_not have_content('TestA')
+    end
+  end
 end
