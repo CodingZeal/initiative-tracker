@@ -59,6 +59,9 @@ end
 feature 'Only admin can see users' do
   let(:user) { create_logged_in_user }
   let(:admin) { create_logged_in_admin }
+  background do
+    @user = User.create!(:fullname => 'TestA', :email => 'test@test.com', :password => 'password', :is_admin => false, :team_leader_id => nil)
+  end
   scenario 'user see flash message from user url' do
     visit users_path(user)
     expect(page).to have_content('You are not an admin')
@@ -67,5 +70,15 @@ feature 'Only admin can see users' do
     visit users_path(admin)
     expect(page).to_not have_content('You are not an admin')
     expect(page).to have_content('Users')
+  end
+  scenario "delete user from list view" do
+    visit user_path(admin)
+    expect { click_link '', :class => "no-link" }.to change(User, :count).by(-1)
+    expect(page).to_not have_content('TestA')
+  end
+  scenario "display flash message confirming user deletion" do
+    visit users_path(user)
+    expect { click_link '', :class => "no-link" }.to change(User, :count).by(-1)
+    expect(page).to have_content('deleted')
   end
 end
