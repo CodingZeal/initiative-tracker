@@ -1,0 +1,19 @@
+<div class="init-list">
+  <% users.each do |user| %>
+    <%= link_to edit_user_path(user), :style=> "text-decoration: none;" do %>
+      <div class="card">
+        <h3 class="init-fullname"><%= user.fullname %></h3>
+          <p class="init-email"><%= user.email %></p>
+            <% if user.is_admin == true %>
+              <p class="init-is-admin">Admin</p>
+            <% end %>
+        <% if user.team_leader_id != nil and user.is_admin != true %>
+          <p class="init-team-leader">Team Leader</p>
+        <% elsif user.team_leader_id == nil and user.is_admin != true %>
+          <p class="init-team-leader"></p>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  <% end %>
+</div>
