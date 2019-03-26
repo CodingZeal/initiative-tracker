@@ -6,4 +6,6 @@ class Initiative < ApplicationRecord
 
   scope :completed, -> {where(completion: true)}
   scope :incompleted, -> {where(completion: false)}
+
+  belongs_to :user
 end

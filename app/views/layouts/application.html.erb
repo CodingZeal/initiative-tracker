@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>Initiative Tracker</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+    <title>Initiative Tracker</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <div class="wrapper-bg-white-block">
-      <div class="nav-link">
-        <%= link_to "User List", users_path, :style=> "text-decoration: none;" %>
-      </div>
-      <div class="logo-style">
-        <%= image_tag("logo.png") %>
-      </div>
+        <div class="nav-link">
+          <% if current_user.is_admin? %>
+            <%= link_to "User List", users_path, class: "nav-btn #{"nav-btn-color" if controller_name == 'users'}" %>
+            <%= link_to "Initiatives", root_path, class: "nav-btn #{"nav-btn-color" if controller_name == 'initiatives'} " %>
+          <% end %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-btn" %>
+        </div>
+        <div class="logo-style">
+          <%= image_tag("logo.png") %>
+        </div>
     </div>
 
-  <div class="wrapper">
-    <% if flash[:notice] %>
-      <p><%= flash[:notice] %></p>
-    <% end %>
-  </div>
-  <%= yield %>
+    <div class="wrapper">
+      <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
+      <% end %>
+    </div>
+    <%= yield %>
   </body>
 </html>

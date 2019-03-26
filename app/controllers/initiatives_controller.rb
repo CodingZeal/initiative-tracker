@@ -13,7 +13,7 @@ class InitiativesController < ApplicationController
   end
 
   def create
-    @initiative = Initiative.new(initiative_params)
+    @initiative = current_user.initiatives.build(initiative_params)
     if @initiative.save
       populate_initiative_sets
       redirect_to :initiatives
@@ -40,19 +40,24 @@ class InitiativesController < ApplicationController
       redirect_to root_path
     end
   end
-
+  
   private
-
+  
   def initiative_params
     params.require(:initiative).permit(:title, :description, :target_date, :completion)
   end
-
+  
   def find_initiative
-    @initiative = Initiative.find(params[:id])
+    @initiative = current_user.initiatives.find_by_id(params[:id])
+    
+    if @initiative.nil?
+      flash[:notice] = "Route does not exist. Please check your initiative route."
+      redirect_to root_path
+    end
   end
 
   def populate_initiative_sets
-    @completed_initiatives = Initiative.completed
-    @incompleted_initiatives = Initiative.incompleted
+    @completed_initiatives = Initiative.where(user_id: current_user).completed
+    @incompleted_initiatives = Initiative.where(user_id: current_user).incompleted
   end
 end

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
+  before_action :require_admin
+  
   def index
     @users = User.all
   end
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to :users
+      redirect_to users_url
     else
       render :new
     end

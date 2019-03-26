@@ -17,7 +17,7 @@
         <% if user.team_leader_id != nil and user.is_admin != true %>
           <p class="init-team-leader">Team Leader</p>
         <% elsif user.team_leader_id == nil and user.is_admin != true %>
-          <p class="init-team-leader"></p>
+          <p class="init-team-leader">Team Member</p>
       <% end %>
     </div>
     <% end %>
