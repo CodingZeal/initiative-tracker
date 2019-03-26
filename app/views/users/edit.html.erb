@@ -10,22 +10,22 @@
       <% end %>
       </ul>
 
-    <% end %>
+     <% end %>
       <%= f.label :fullname, 'Full Name', class: 'form-field-label' %>
       <%= f.text_field :fullname, placeholder: 'Enter name here...', maxlength: '256', class: 'form-field w-input' %>
 
-      <%= f.label :email, 'Email', class: 'form-field-label' %>
+       <%= f.label :email, 'Email', class: 'form-field-label' %>
       <%= f.text_field :email, placeholder: 'Enter email here', class: 'form-field w-input' %>
 
-      <%= f.label :password, 'Password', class: 'form-field-label' %>
+       <%= f.label :password, 'Password', class: 'form-field-label' %>
       <%= f.text_field :password, placeholder: 'Enter password here', class: 'form-field w-input' %>
 
 
-      <%= f.label :is_admin, 'Is Admin', class: 'form-field-label' %>
+       <%= f.label :is_admin, 'Is Admin', class: 'form-field-label' %>
       <%= f.check_box :is_admin, {}, "true", "false" %>
 
 
-      <%= f.label :team_leader_id, 'Team Leader', class: 'form-field-label' %>
+       <%= f.label :team_leader_id, 'Team Leader', class: 'form-field-label' %>
       <%= f.select("team_leader_id", User.all.collect {|p| [p.fullname, p.id]}, { include_blank: true }) %>
       <%= f.submit 'Submit', class: 'btn-primary w-button' %>
     <% end %>

@@ -38,7 +38,7 @@ feature 'Admin creates a new user' do
     expect(page).to have_content('email2@email.com')
   end
   feature 'Visitor edits a user' do
-    let(:user){ create_logged_in_user }
+    let(:user){ create_logged_in_admin }
     background do
       @user = User.create!(:fullname => 'TestA', :email => 'testa@testa.com', :password => 'icecream')
     end
@@ -60,7 +60,6 @@ feature 'Admin creates a new user' do
     end
   end
 end
-
 feature 'User can log out' do
   let(:user) { create_logged_in_user }
   scenario 'clicks logout' do
@@ -77,7 +76,6 @@ feature 'User can\'t see a list of users' do
     expect(page).to have_content('Logout')
   end
 end
-
 feature 'Only admin can see users' do
   let(:user) { create_logged_in_user }
   let(:admin) { create_logged_in_admin }
