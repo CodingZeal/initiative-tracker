@@ -18,7 +18,7 @@ end
 feature 'Visitor edits a initiative' do
   let(:user){ create_logged_in_user }
   background do
-    @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020', :description => 'ice cream', :completion => false)
+    @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020', :description => 'ice cream', :completion => false, user: user)
   end
   scenario 'clicks initiative on list view' do
     visit edit_initiative_path(@initiative, user)
