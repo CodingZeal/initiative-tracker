@@ -690,6 +690,23 @@ h5 {
   }
 }
 
+.add-user-btn {
+  float: right;
+}
+
+#user_team_leader_id {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#user_is_admin {
+  margin-top: -20px;
+  margin-left: 70px;
+  float: left;
+  position: relative;
+  z-index: 11;
+}
+
 .logo-style {
   margin-left: 45%;
   position: relative;
