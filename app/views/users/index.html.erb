@@ -17,6 +17,13 @@
         <% elsif user.team_leader_id == nil and user.is_admin != true %>
           <p class="init-team-leader">Team Member</p>
       <% end %>
+      <div class="w-col w-col-2 padding-zero">
+        <% if !user.is_admin %>
+          <%= link_to user_path(user), method: :delete, data: { confirm: "Are you sure you would like to delete User: #{user.fullname}" }, :class => "no-link", :id => "delete-user-#{user.id}"  do %>
+            <%= image_tag "icon-delete.svg" %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
     <% end %>
   <% end %>
