@@ -120,3 +120,16 @@ feature 'Only admin can see users' do
     expect(page).to have_content('deleted')
   end
 end
+
+feature 'Team leader can see team members' do
+  let(:team_leader) { create_logged_in_user }
+  let(:team_member) { create(:user, email: "a@gmail.com", team_leader: team_leader) }
+  let(:not_team_member) { create(:user, email: "b@gmail.com") }
+  scenario 'team leader sees team members name' do
+    visit users_path(team_leader)
+    expect(page).to_not have_content(not_team_member.email)
+    expect(page).to have_content(team_member.email)
+  end
+end
+
+

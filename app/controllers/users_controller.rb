@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   before_action :require_admin
 
   def index
-    @users = User.all
+    if current_user.is_admin?
+      @users = User.all
+    else
+      @users = current_user.team_members
+    end
   end
 
   def new

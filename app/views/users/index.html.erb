@@ -1,6 +1,8 @@
 <div class="wrapper">
   <div class="add-user-btn">
+    <% if current_user.is_admin %>
     <%= link_to 'Add User', new_user_path, class: 'btn-primary w-button' %>
+    <% end %>
   </div>
   <h2>Users</h2>
   <%= render "users" %>
