@@ -57,15 +57,27 @@ feature 'User can\'t see a list of users' do
 end
 
 feature 'Only admin can see users' do
-  let(:user) { create_logged_in_user }
-  let(:admin) { create_logged_in_admin }
+    let(:admin) { create_logged_in_admin }
+  background do
+    @user = User.create!(:fullname => 'TestA', :email => 'testa@testa.com', :password => 'password', :is_admin => false, :team_leader_id => nil)
+  end
   scenario 'user see flash message from user url' do
-    visit users_path(user)
-    expect(page).to have_content('You are not an admin')
+    visit users_path(@user)
+    expect(page).to have_content('You need to sign in or sign up before continuing')
   end
   scenario 'admin can not see flash message from user url' do
     visit users_path(admin)
     expect(page).to_not have_content('You are not an admin')
-    expect(page).to have_content('Users')
+    expect(page).to have_content('email@email.com')
+  end
+  scenario "delete user from list view" do
+    visit users_path(admin)
+    expect { click_link '', :id => "delete-user-#{@user.id}" }.to change(User, :count).by(-1)
+     expect(page).to_not have_content("testa@testa.com")
+  end
+  scenario "display flash message confirming user deletion" do
+    visit users_path(admin)
+    expect { click_link '', :id => "delete-user-#{@user.id}" }.to change(User, :count).by(-1)
+    expect(page).to have_content('deleted')
   end
 end

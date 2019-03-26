@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :require_admin
-  
+
   def index
     @users = User.all
   end
@@ -17,6 +17,13 @@ class UsersController < ApplicationController
       redirect_to users_url
     else
       render :new
+    end
+  end
+
+  def destroy
+    if @user.destroy
+      flash[:notice] = "User: #{@user.fullname} was successfully deleted"
+      redirect_to users_path
     end
   end
 
