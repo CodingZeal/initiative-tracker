@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :sessions => "sessions" }
-  get '/users/team_members', to: 'users#team_members', as: 'team'
+  get '/team', to: 'users#team_members'
   resources :users
   resources :initiatives
   root to: 'initiatives#index'

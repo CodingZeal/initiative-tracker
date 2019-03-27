@@ -491,7 +491,7 @@ h5 {
 }
 
 .nav-link {
-  float: right;  
+  float: right;
   position: relative;
   top: 15px;
   right: 50px;
@@ -610,7 +610,7 @@ h5 {
 }
 
 .nav-link {
-  float: right;  
+  float: right;
   position: relative;
   top: 15px;
   right: 50px;
@@ -711,6 +711,10 @@ h5 {
   margin-left: 15%;
   position: relative;
   top: 20px;
+<<<<<<< HEAD
+=======
+  width: 50%;
+>>>>>>> resolved PR comments
 }
 
 .login-style {
