@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :require_admin, except: [:team_members]
-  
+
   def index
     if current_user.is_admin?
       @users = User.all
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       @users = current_user.team_members
       render :index
     else
+      flash[:notice] = "Invalid route"
       redirect_to root_path
     end
   end
