@@ -15,7 +15,7 @@
           <% if current_user.is_admin? %>
             <%= link_to "User List", users_path, class: "nav-btn #{"nav-btn-color" if controller_name == 'users'}" %>
             <% elsif current_user.team_members.present? %>
-            <%= link_to "Team", users_path, class: "nav-btn #{"nav-btn-color" if controller_name == 'users'}" %>
+            <%= link_to "Team", team_path, class: "nav-btn #{"nav-btn-color" if controller_name == 'users'}" %>
           <% end %>
             <%= link_to "Initiatives", root_path, class: "nav-btn #{"nav-btn-color" if controller_name == 'initiatives'} " %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-btn" %>

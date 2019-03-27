@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       @users = current_user.team_members
       render :index
     else
-      
+      redirect_to root_path
     end
   end
 
