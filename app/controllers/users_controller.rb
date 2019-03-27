@@ -1,13 +1,22 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :require_admin
-
+  before_action :require_admin, except: [:team_members]
+  
   def index
     if current_user.is_admin?
       @users = User.all
     else
       @users = current_user.team_members
+    end
+  end
+
+  def team_members
+    if current_user.team_members.any?
+      @users = current_user.team_members
+      render :index
+    else
+      
     end
   end
 
