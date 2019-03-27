@@ -708,18 +708,16 @@ h5 {
 }
 
 .logo-style {
-  margin-left: 45%;
+  margin-left: 15%;
   position: relative;
   top: 20px;
-  z-index: 21;
-  width: 50%;
 }
 
 .login-style {
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  width: 50%;
+  text-align: center;
+  width: 100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .nav-btn {
@@ -733,4 +731,9 @@ h5 {
 
 .nav-btn-color {
   color : #ffb648;
+}
+
+.login-form-margin {
+  margin: auto;
+  width: 50%;
 }
