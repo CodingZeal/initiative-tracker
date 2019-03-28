@@ -41,6 +41,7 @@ feature 'Admin creates a new user' do
     let(:user){ create_logged_in_admin }
     background do
       @user = User.create!(:fullname => 'TestA', :email => 'testa@testa.com', :password => 'icecream')
+      @user2 = User.create!(:fullname => 'TestB', :email => 'testb@testa.com', :password => 'icecream')
     end
     scenario 'clicks user on list view' do
       visit edit_user_path(@user, user)
@@ -57,6 +58,24 @@ feature 'Admin creates a new user' do
       click_button 'Submit'
       expect(page).to have_content('TestB')
       expect(page).to_not have_content('TestA')
+    end
+    scenario 'can not edit user without fullname, email & password' do
+      visit edit_user_path(@user, user)
+      fill_in 'Full Name', with: ''
+      fill_in 'Email', with: ''
+      fill_in 'Password', with: ''
+      click_button 'Submit'
+      expect(page).to have_content("Password can't be blank")
+      expect(page).to have_content("Email can't be blank")
+      expect(page).to have_content("Fullname can't be blank")
+    end
+    scenario 'can not create/edit user with duplicate email' do
+      visit edit_user_path(@user2, user)
+      fill_in 'Full Name', with: 'TestB'
+      fill_in 'Email', with: 'testa@testa.com'
+      fill_in 'Password', with: 'icecream'
+      click_button 'Submit'
+      expect(page).to have_content("Email has already been taken")
     end
   end
 end

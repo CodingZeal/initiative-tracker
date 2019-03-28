@@ -30,7 +30,7 @@ class InitiativesController < ApplicationController
       populate_initiative_sets
       redirect_to root_path
     else
-      render 'initiatives#edit'
+      render :edit
     end
   end
 
