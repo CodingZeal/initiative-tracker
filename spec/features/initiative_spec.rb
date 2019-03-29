@@ -36,6 +36,15 @@ feature 'Visitor edits a initiative' do
     expect(page).to have_content('TestB')
     expect(page).to_not have_content('TestA')
   end
+  scenario 'cant not change without initiative name and target date' do
+    visit edit_initiative_path(@initiative, user)
+    fill_in 'Initiative Name', with: ''
+    fill_in 'Target Date', with: ''
+    fill_in 'Description', with: ''
+    click_button 'Submit'
+    expect(page).to have_content("Title can't be blank")
+    expect(page).to have_content("Target date can't be blank")
+  end
   scenario "delete initiative from list view" do
     visit root_path(user)
     expect { click_link '', :class => "no-link" }.to change(Initiative, :count).by(-1)

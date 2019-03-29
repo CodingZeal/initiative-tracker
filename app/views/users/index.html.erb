@@ -1,28 +1,19 @@
 <div class="wrapper">
   <div class="add-user-btn">
-    <%= link_to 'Add User', new_user_path, class: 'btn-primary w-button' %>
+    <% if current_user.is_admin %>
+      <%= link_to 'Add User', new_user_path, class: 'btn-primary w-button' %>
+    <% end %>
   </div>
   <h2>Users</h2>
   <div class="init-list">
-  <% @users.each do |user| %>
-    <div class="card">
-      <h3 class="init-fullname"><%= user.fullname %></h3>
-      <p class="init-email"><%= user.email %></p>
-      <% if user.is_admin == true %>
-         <p class="init-is-admin">Admin</p>
-      <% end %>
-      <% if user.team_leader_id != nil and user.is_admin != true %>
-        <p class="init-team-leader">Team Leader</p>
-      <% elsif user.team_leader_id == nil and user.is_admin != true %>
-        <p class="init-team-leader">Team Member</p>
-      <% end %>
-      <div class="w-col w-col-2 padding-zero">
-        <% if !user.is_admin %>
-          <%= link_to user_path(user), method: :delete, data: { confirm: "Are you sure you would like to delete User: #{user.fullname}" }, :class => "no-link", :id => "delete-user-#{user.id}"  do %>
-            <%= image_tag "icon-delete.svg" %>
-          <% end %>
+    <% @users.each do |user| %>
+      <% if current_user.is_admin? %>
+        <%= link_to edit_user_path(user), class: "no-link" do %>
+          <%= render partial: "user", locals: { user: user } %>
         <% end %>
-      </div>
-    </div>
-  <% end %>
+      <% else %>
+        <%= render partial: "user", locals: { user: user } %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

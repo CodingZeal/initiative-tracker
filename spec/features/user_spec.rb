@@ -37,8 +37,48 @@ feature 'Admin creates a new user' do
     expect(page).to have_content('Test2')
     expect(page).to have_content('email2@email.com')
   end
+  feature 'Visitor edits a user' do
+    let(:user){ create_logged_in_admin }
+    background do
+      @user = User.create!(:fullname => 'TestA', :email => 'testa@testa.com', :password => 'icecream')
+      @user2 = User.create!(:fullname => 'TestB', :email => 'testb@testa.com', :password => 'icecream')
+    end
+    scenario 'clicks user on list view' do
+      visit edit_user_path(@user, user)
+      expect(page).to have_content('Edit User')
+      expect(@user.fullname).to eq('TestA')
+      expect(@user.email).to eq('testa@testa.com')
+      expect(@user.password).to eq('icecream')
+    end
+    scenario 'change user name and email' do
+      visit edit_user_path(@user, user)
+      fill_in 'Full Name', with: 'TestB'
+      fill_in 'Email', with: 'testb@testb.com'
+      fill_in 'Password', with: 'bananas'
+      click_button 'Submit'
+      expect(page).to have_content('TestB')
+      expect(page).to_not have_content('TestA')
+    end
+    scenario 'can not edit user without fullname, email & password' do
+      visit edit_user_path(@user, user)
+      fill_in 'Full Name', with: ''
+      fill_in 'Email', with: ''
+      fill_in 'Password', with: ''
+      click_button 'Submit'
+      expect(page).to have_content("Password can't be blank")
+      expect(page).to have_content("Email can't be blank")
+      expect(page).to have_content("Fullname can't be blank")
+    end
+    scenario 'can not create/edit user with duplicate email' do
+      visit edit_user_path(@user2, user)
+      fill_in 'Full Name', with: 'TestB'
+      fill_in 'Email', with: 'testa@testa.com'
+      fill_in 'Password', with: 'icecream'
+      click_button 'Submit'
+      expect(page).to have_content("Email has already been taken")
+    end
+  end
 end
-
 feature 'User can log out' do
   let(:user) { create_logged_in_user }
   scenario 'clicks logout' do
@@ -55,7 +95,6 @@ feature 'User can\'t see a list of users' do
     expect(page).to have_content('Logout')
   end
 end
-
 feature 'Only admin can see users' do
     let(:admin) { create_logged_in_admin }
   background do
@@ -79,5 +118,16 @@ feature 'Only admin can see users' do
     visit users_path(admin)
     expect { click_link '', :id => "delete-user-#{@user.id}" }.to change(User, :count).by(-1)
     expect(page).to have_content('deleted')
+  end
+end
+
+feature 'Team leader can see team members' do
+  let(:team_leader) { create_logged_in_user }
+  let!(:team_member) { create(:user, email: "a@gmail.com", team_leader: team_leader) }
+  let!(:not_team_member) { create(:user, email: "b@gmail.com") }
+  scenario 'team leader sees team members name' do
+    visit team_path(team_leader)
+    expect(page).to_not have_content(not_team_member.email)
+    expect(page).to have_content(team_member.email)
   end
 end
