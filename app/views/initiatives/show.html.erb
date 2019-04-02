@@ -1,0 +1,5 @@
+<div class='wrapper'>
+  <h2><%= "#{@team_member.fullname}'s Initiatives" %></h2>
+  <%= render partial: "initiatives", locals: { initiatives: @incompleted_initiatives } %>
+  <%= render partial: "initiatives", locals: { initiatives: @completed_initiatives } %>
+</div>

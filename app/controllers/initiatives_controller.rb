@@ -3,9 +3,14 @@
 class InitiativesController < ApplicationController
   before_action :find_initiative, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :find_team_member_intiatives, only: [:show]
 
   def index
     populate_initiative_sets
+  end
+
+  def show
+    @team_member = User.find(params[:id])
   end
 
   def new
@@ -57,7 +62,12 @@ class InitiativesController < ApplicationController
   end
 
   def populate_initiative_sets
-    @completed_initiatives = Initiative.where(user_id: current_user).completed
-    @incompleted_initiatives = Initiative.where(user_id: current_user).incompleted
+    @completed_initiatives = current_user.initiatives.completed
+    @incompleted_initiatives = current_user.initiatives.incompleted
+  end
+  
+  def find_team_member_intiatives
+    @completed_initiatives = current_user.team_members.find(params[:id]).initiatives.completed
+    @incompleted_initiatives = current_user.team_members.find(params[:id]).initiatives.incompleted
   end
 end

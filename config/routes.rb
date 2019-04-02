@@ -5,5 +5,10 @@ Rails.application.routes.draw do
   get '/team', to: 'users#team_members'
   resources :users
   resources :initiatives
+  resources :team_members do
+    resource :initiatives do
+      resource :notes
+    end
+  end
   root to: 'initiatives#index'
 end
