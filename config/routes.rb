@@ -3,12 +3,12 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :sessions => "sessions" }
   get '/team', to: 'users#team_members'
-  resources :users
-  resources :initiatives
-  resources :team_members do
-    resource :initiatives do
-      resource :notes
+  # get '/team/:user_id/initiatives', to: 'initiatives#team_members_initiatives', as: 'team_initiatives'
+  resources :users do
+    resources :initiatives do
+      resources :notes
     end
   end
+  resources :initiatives
   root to: 'initiatives#index'
 end

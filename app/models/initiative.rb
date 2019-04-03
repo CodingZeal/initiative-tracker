@@ -7,5 +7,8 @@ class Initiative < ApplicationRecord
   scope :completed, -> {where(completion: true)}
   scope :incompleted, -> {where(completion: false)}
 
+  has_many :notes
+
   belongs_to :user
+
 end

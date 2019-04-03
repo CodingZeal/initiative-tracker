@@ -1,5 +1,20 @@
-<div class='wrapper'>
+<div class="wrapper">
   <h2><%= "#{@team_member.fullname}'s Initiatives" %></h2>
-  <%= render partial: "initiatives", locals: { initiatives: @incompleted_initiatives } %>
-  <%= render partial: "initiatives", locals: { initiatives: @completed_initiatives } %>
+  <div class="card">
+    <h3 class="init-name"><%= @initiative.title %></h3>
+    <p class="init-description"><%= @initiative.description %></p>
+    <div>
+      <div class="init-footer w-row">
+        <div class="w-col w-col-2 padding-zero"><%= image_tag "icon-#{@initiative.completion ? 'completion': 'calendar'}.svg", class: "icon-target" %></div>
+        <div class="card-date w-col w-col-10">
+          <%= @initiative.target_date.to_s(:long_ordinal) unless @initiative.target_date.nil? %>
+        </div>
+        <div class="w-col w-col-2 padding-zero">
+          <%= link_to new_user_initiative_note_path(@team_member, @initiative), :class => "no-link" do %>
+            <%= image_tag "icon-note.svg" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

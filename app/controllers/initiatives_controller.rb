@@ -1,16 +1,22 @@
 # frozen_string_literal: true
 
 class InitiativesController < ApplicationController
-  before_action :find_initiative, only: [:edit, :update, :destroy]
+  before_action :find_initiative, only: [:edit, :show, :update, :destroy]
   before_action :authenticate_user!
-  before_action :find_team_member_intiatives, only: [:show]
+  # before_action :find_team_member_intiative, only: [:show]
 
-  def index
+  def index  
     populate_initiative_sets
   end
 
+  def team_members_initiatives
+    @team_member = User.find(params[:user_id])
+    @completed_initiatives = @team_member.initiatives.completed
+    @incompleted_initiatives = @team_member.initiatives.incompleted
+    render :index
+  end
+
   def show
-    @team_member = User.find(params[:id])
   end
 
   def new
@@ -53,7 +59,8 @@ class InitiativesController < ApplicationController
   end
   
   def find_initiative
-    @initiative = current_user.initiatives.find_by_id(params[:id])
+    team_member
+    @initiative = @team_member.initiatives.find(params[:id])
     
     if @initiative.nil?
       flash[:notice] = "Route does not exist. Please check your initiative route."
@@ -62,12 +69,21 @@ class InitiativesController < ApplicationController
   end
 
   def populate_initiative_sets
-    @completed_initiatives = current_user.initiatives.completed
-    @incompleted_initiatives = current_user.initiatives.incompleted
+    team_member
+    @completed_initiatives = @team_member.initiatives.completed
+    @incompleted_initiatives = @team_member.initiatives.incompleted
   end
   
-  def find_team_member_intiatives
-    @completed_initiatives = current_user.team_members.find(params[:id]).initiatives.completed
-    @incompleted_initiatives = current_user.team_members.find(params[:id]).initiatives.incompleted
+  def find_team_member_intiative
+    team_member
+    @initiative = @team_member.initiatives.find(params[:id])
+  end
+
+  def team_member
+    if params[:user_id].blank?
+      @team_member = current_user
+    else
+      @team_member = User.find(params[:user_id]) if current_user.team_members.pluck(:id).include?(params[:user_id].to_i)
+    end
   end
 end

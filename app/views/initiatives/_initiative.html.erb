@@ -1,0 +1,17 @@
+<div class="card">
+  <h3 class="init-name"><%= initiative.title %></h3>
+  <p class="init-description"><%= initiative.description %></p>
+  <div>
+    <div class="init-footer w-row">
+      <div class="w-col w-col-2 padding-zero"><%= image_tag "icon-#{initiative.completion ? 'completion': 'calendar'}.svg", class: "icon-target" %></div>
+      <div class="card-date w-col w-col-10">
+        <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
+      </div>
+      <div class="w-col w-col-2 padding-zero">
+        <%= link_to initiative_path(initiative), method: :delete, data: { confirm: "Are you sure you would like to delete Initative: #{initiative.title}" }, :class => "no-link", :id => "delete-initiative" do %>
+          <%= image_tag "icon-delete.svg" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
