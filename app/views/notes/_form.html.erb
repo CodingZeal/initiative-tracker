@@ -1,0 +1,11 @@
+<div class='w-form'>
+  <br/>
+  <%= form_for([@team_member, @initiative, @initiative.notes.build]) do |f| %>
+
+    <%= f.text_area :body, maxlength: '5000', placeholder: 'Add a note here...', class: 'textarea w-input' %>
+    <div class="init-footer">
+    </div>
+    <%= f.submit 'Add Note', class: 'btn-note' %>
+    <%= link_to "Back", user_initiatives_path(@team_member), class: 'btn-note' %>
+  <% end %>
+</div>
