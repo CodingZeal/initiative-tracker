@@ -15,5 +15,9 @@
         <% end %>
       </div>
     </div>
+    <hr>
+    <div>
+      <%= render initiative.notes.order('created_at DESC') %>
+    </div>
   </div>
 </div>

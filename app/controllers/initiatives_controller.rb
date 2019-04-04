@@ -63,27 +63,31 @@ class InitiativesController < ApplicationController
     @initiative = @team_member.initiatives.find(params[:id])
     
     if @initiative.nil?
-      flash[:notice] = "Route does not exist. Please check your initiative route."
+      flash[:notice] = "Initiative not found"
       redirect_to root_path
     end
   end
 
   def populate_initiative_sets
-    team_member
-    @completed_initiatives = @team_member.initiatives.completed
-    @incompleted_initiatives = @team_member.initiatives.incompleted
+    if team_member.nil?
+      flash[:notice] = "Initiative not found"
+      redirect_to root_path
+    else
+      @completed_initiatives = @team_member.initiatives.completed
+      @incompleted_initiatives = @team_member.initiatives.incompleted
+    end
   end
   
   def find_team_member_intiative
-    team_member
-    @initiative = @team_member.initiatives.find(params[:id])
+    @initiative = team_member.initiatives.find(params[:id])
   end
 
   def team_member
-    if params[:user_id].blank?
-      @team_member = current_user
-    else
-      @team_member = User.find(params[:user_id]) if current_user.team_members.pluck(:id).include?(params[:user_id].to_i)
-    end
+    @team_member ||= 
+      if params[:user_id].blank?
+        current_user
+      else
+        User.find(params[:user_id]) if current_user.team_members.pluck(:id).include?(params[:user_id].to_i)
+      end
   end
 end

@@ -1,26 +1,22 @@
 class NotesController < ApplicationController
 
   def new
+    find_initiative
     @note = Note.new
   end
 
   def create
-    team_member
-    @initiative = Initiative.find(params[:initiative_id])
-    @note = Note.new(note_params)
+    find_initiative
+    @note = @initiative.notes.build(note_params)
     @note.initiative_id = @initiative.id
     @note.user_id = current_user.id
-    # @note = @initiative.notes.create(note_params)
 
-    if @note.save
+    if @note.save 
       redirect_to user_initiative_path(team_member, @initiative)
     else
-      render :new
+      render 'initiatives/show'
     end
 
-  end
-
-  def edit
   end
 
   def update
@@ -32,15 +28,23 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:body, :initiative_id, :user_id)
+    params.require(:note).permit(:body)
   end
   
-
   def team_member
-    if params[:user_id].blank?
-      @team_member = current_user
-    else
-      @team_member = User.find(params[:user_id]) if current_user.team_members.pluck(:id).include?(params[:user_id].to_i)
+    @team_member ||= 
+      if params[:user_id].blank?
+        current_user
+      else
+        User.find(params[:user_id]) if current_user.team_members.pluck(:id).include?(params[:user_id].to_i)
+      end
+  end
+
+  def find_initiative
+    @initiative = team_member.initiatives.find(params[:initiative_id])
+    if @initiative.nil?
+      flash[:notice] = "Route does not exist. Please check your initiative route."
+      redirect_to root_path
     end
   end
 

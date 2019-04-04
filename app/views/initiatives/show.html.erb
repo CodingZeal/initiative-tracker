@@ -22,7 +22,7 @@
       <hr>
       <div>
         <%= render @initiative.notes.order('created_at DESC') %>
-        <%= render 'notes/form' %>
+        <%= render partial: 'notes/form' %>
       </div>
     </div>
   </div>
