@@ -1,5 +1,10 @@
 class NotesController < ApplicationController
 
+  def index
+    find_initiative
+    redirect_to user_initiative_path(team_member, @initiative)
+  end
+
   def new
     find_initiative
     @note = Note.new
@@ -7,22 +12,13 @@ class NotesController < ApplicationController
 
   def create
     find_initiative
-    @note = @initiative.notes.build(note_params)
-    @note.initiative_id = @initiative.id
-    @note.user_id = current_user.id
+    @note = @initiative.notes.build(note_params.merge(initiative_id: @initiative_id, user_id: current_user.id))
 
     if @note.save 
       redirect_to user_initiative_path(team_member, @initiative)
     else
       render 'initiatives/show'
     end
-
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   private
