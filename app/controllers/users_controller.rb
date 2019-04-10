@@ -21,10 +21,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def team_leader
-    current_user.team_members.pluck(:id).include?(params[:user_id].to_i)
-  end
-
   def new
     @user = User.new
   end

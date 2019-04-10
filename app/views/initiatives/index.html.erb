@@ -2,7 +2,7 @@
   <div class="w-container w-row">
     <h2 class="w-col w-col-7"><%= "#{@team_member.fullname}'s Initiatives" %></h2>
     <div class="w-col w-col-5">
-      <% if !current_user.team_members.pluck(:id).include?(params[:user_id].to_i) %>
+      <% if current_user == @team_member %>
         <%= link_to "New Initiative", new_initiative_path, class: 'btn-primary' %>
       <% end %>
     </div>

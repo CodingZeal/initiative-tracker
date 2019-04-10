@@ -8,7 +8,5 @@ class Initiative < ApplicationRecord
   scope :incompleted, -> {where(completion: false)}
 
   has_many :notes, dependent: :destroy
-
   belongs_to :user
-
 end
