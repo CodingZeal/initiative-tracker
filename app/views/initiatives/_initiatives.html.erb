@@ -1,6 +1,6 @@
 <div class="init-list">
   <% initiatives.each do |initiative| %>
-    <% if current_user.team_members.pluck(:id).include?(params[:user_id].to_i) %>
+    <% if current_user != @team_member %>
       <%= link_to user_initiative_path(initiative.user_id, initiative), :class=> "no-link" do %>
         <%= render partial: "initiative", locals: { initiative: initiative } %>
       <% end %>

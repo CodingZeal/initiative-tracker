@@ -3,13 +3,12 @@
 class InitiativesController < ApplicationController
   before_action :find_initiative, only: [:edit, :show, :update, :destroy]
   before_action :authenticate_user!
+  before_action :populate_initiative_sets, only: [:index, :team_members_initiatives, :update]
 
   def index  
-    populate_initiative_sets
   end
 
   def team_members_initiatives
-    populate_initiative_sets
     render :index
   end
 
@@ -23,7 +22,6 @@ class InitiativesController < ApplicationController
   def create
     @initiative = current_user.initiatives.build(initiative_params)
     if @initiative.save
-      populate_initiative_sets
       redirect_to :initiatives
     else
       render :new
@@ -35,7 +33,6 @@ class InitiativesController < ApplicationController
 
   def update
     if @initiative.update(initiative_params)
-      populate_initiative_sets
       redirect_to root_path
     else
       render :edit
@@ -48,17 +45,16 @@ class InitiativesController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   private
-  
+
   def initiative_params
     params.require(:initiative).permit(:title, :description, :target_date, :completion)
   end
-  
+
   def find_initiative
-    team_member
-    @initiative = @team_member.initiatives.find(params[:id])
-    
+    @initiative = team_member.initiatives.find(params[:id])
+
     if @initiative.nil?
       flash[:notice] = "Initiative not found"
       redirect_to root_path
@@ -73,10 +69,6 @@ class InitiativesController < ApplicationController
       @completed_initiatives = @team_member.initiatives.completed
       @incompleted_initiatives = @team_member.initiatives.incompleted
     end
-  end
-  
-  def find_team_member_intiative
-    @initiative = team_member.initiatives.find(params[:id])
   end
 
   def team_member

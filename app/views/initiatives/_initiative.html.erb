@@ -8,7 +8,7 @@
         <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
       </div>
       <div class="w-col w-col-2 padding-zero">
-        <% if !current_user.team_members.pluck(:id).include?(params[:user_id].to_i) %>
+        <% if current_user == @team_member %>
           <%= link_to initiative_path(initiative), method: :delete, data: { confirm: "Are you sure you would like to delete Initative: #{initiative.title}" }, :class => "no-link", :id => "delete-initiative" do %>
             <%= image_tag "icon-delete.svg" %>
           <% end %>
