@@ -22,7 +22,7 @@ class InitiativesController < ApplicationController
   def create
     @initiative = current_user.initiatives.build(initiative_params)
     if @initiative.save
-      redirect_to :initiatives
+      redirect_to root_path
     else
       render :new
     end

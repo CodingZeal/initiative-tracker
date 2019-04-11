@@ -29,7 +29,7 @@ describe InitiativesController, type: :controller do
 
     expect(response).to redirect_to root_path
     expect(assigns(:incompleted_initiatives)).to eq([initiative2])
-    expect(assigns(:completed_initiatives)).to eq([initiative])
+    expect(assigns(:completed_initiatives)).to eq([initiative, initiative3])
   end
   it "sees own initiatives only" do
     get :index
