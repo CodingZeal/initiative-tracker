@@ -48,3 +48,17 @@ feature 'New note validations' do
     expect(page).to have_content("Body is too short")
   end
 end
+
+feature 'Delete team leader notes' do
+  let(:user){ create_logged_in_user }
+  let(:member) { create(:user, email: "a@gmail.com", team_leader: user) }
+  let(:initiative) { create(:initiative, user: member) }
+
+  scenario 'clicks delete icon' do
+    visit user_initiative_path(member, initiative)
+    fill_in 'note_body', with: 'Note test'
+    click_button 'Add Note'
+    expect { click_link '', :class => "no-link" }.to change(Note, :count).by(-1)
+    expect(page).to_not have_content('ice cream')
+  end
+end
