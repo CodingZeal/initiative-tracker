@@ -3,7 +3,7 @@
 class InitiativesController < ApplicationController
   before_action :find_initiative, only: [:edit, :show, :update, :destroy]
   before_action :authenticate_user!
-  before_action :populate_initiative_sets, only: [:index, :team_members_initiatives, :update]
+  before_action :populate_initiative_sets, only: [:index, :team_members_initiatives]
 
   def index  
   end
