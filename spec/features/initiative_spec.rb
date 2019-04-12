@@ -27,7 +27,7 @@ feature 'Visitor edits a initiative' do
     expect(@initiative.target_date).to eq Date.new(2020,02,01)
     expect(@initiative.description).to eq("ice cream")
   end
-  scenario 'change initiative name, target date, and completion date' do
+  scenario 'change initiative name' do
     visit edit_initiative_path(@initiative, user)
     fill_in 'Initiative Name', with: 'TestB'
     fill_in 'Description', with: 'TestJ'
@@ -61,11 +61,11 @@ feature 'Visitor edits a initiative' do
     expect(page).to have_css("img[src*='icon-completion']")
     expect(page).to have_no_css("img[src*='calendar']")
   end
-  scenario 'change initiative name, target date, and completion date' do
+  scenario 'change completion date' do
     visit edit_initiative_path(@initiative, user)
     check "Completed"
-    fill_in 'Completion Date', with: Date.new(2020,02,01)
+    fill_in 'Completion Date', with: "2030-01-07T23:59:60Z"
     click_button 'Submit'
-    expect(page).to have_content('01/03/2020')
+    expect(page).to have_content('January 7th, 2030')
   end
 end
