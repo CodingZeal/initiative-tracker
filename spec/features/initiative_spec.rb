@@ -18,7 +18,7 @@ end
 feature 'Visitor edits a initiative' do
   let(:user){ create_logged_in_user }
   background do
-    @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020', :description => 'ice cream', :completion => false, user: user)
+    @initiative = Initiative.create!(:title => 'TestA', :target_date => '01/02/2020', :description => 'ice cream', :completion => false, :completion_date => '', user: user)
   end
   scenario 'clicks initiative on list view' do
     visit edit_initiative_path(@initiative, user)
@@ -27,10 +27,9 @@ feature 'Visitor edits a initiative' do
     expect(@initiative.target_date).to eq Date.new(2020,02,01)
     expect(@initiative.description).to eq("ice cream")
   end
-  scenario 'change initiative name and target date' do
+  scenario 'change initiative name, target date, and completion date' do
     visit edit_initiative_path(@initiative, user)
     fill_in 'Initiative Name', with: 'TestB'
-    fill_in 'Target Date', with: '01/01/2020'
     fill_in 'Description', with: 'TestJ'
     click_button 'Submit'
     expect(page).to have_content('TestB')
@@ -61,5 +60,12 @@ feature 'Visitor edits a initiative' do
     click_button 'Submit'
     expect(page).to have_css("img[src*='icon-completion']")
     expect(page).to have_no_css("img[src*='calendar']")
+  end
+  scenario 'change initiative name, target date, and completion date' do
+    visit edit_initiative_path(@initiative, user)
+    check "Completed"
+    fill_in 'Completion Date', with: Date.new(2020,02,01)
+    click_button 'Submit'
+    expect(page).to have_content('01/03/2020')
   end
 end

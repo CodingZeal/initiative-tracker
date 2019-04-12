@@ -5,6 +5,7 @@ FactoryBot.define do
     title 'Test'
     target_date '01/01/2020'
     completion false
+    completion_date ''
   end
 
   factory :user do
