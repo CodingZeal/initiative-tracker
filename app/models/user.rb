@@ -8,8 +8,8 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
 
   has_many :team_members, class_name: "User", foreign_key: "team_leader_id"
-  has_many :initiatives
-  has_many :notes, through: :initiatives
+  has_many :initiatives, dependent: :destroy
+  has_many :notes, dependent: :destroy
   
   belongs_to :team_leader, class_name: "User", required: false
 end
