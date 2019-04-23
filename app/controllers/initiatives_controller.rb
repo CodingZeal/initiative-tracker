@@ -49,7 +49,7 @@ class InitiativesController < ApplicationController
   private
 
   def initiative_params
-    params.require(:initiative).permit(:title, :description, :target_date, :completion)
+    params.require(:initiative).permit(:title, :description, :target_date, :completion, :completion_date)
   end
 
   def find_initiative

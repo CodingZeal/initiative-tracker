@@ -5,7 +5,11 @@
     <div class="init-footer w-row">
       <div class="w-col w-col-2 padding-zero"><%= image_tag "icon-#{initiative.completion ? 'completion': 'calendar'}.svg", class: "icon-target" %></div>
       <div class="card-date w-col w-col-10">
-        <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
+        <% if initiative.completion? %>
+          <%= initiative.completion_date.to_s(:long_ordinal) unless initiative.completion_date.nil? %>
+        <% else %>  
+          <%= initiative.target_date.to_s(:long_ordinal) unless initiative.target_date.nil? %>
+        <% end %>  
       </div>
       <div class="w-col w-col-2 padding-zero">
         <% if current_user == @team_member %>

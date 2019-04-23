@@ -22,6 +22,10 @@
         <%= f.label :completion, 'Completed', class: 'form-field-label' -%>
         <%= f.check_box :completion, :class => "w-checkbox check-box-completion" %>
       </div>
+
+      <%= f.label :completion_date, 'Completion Date', class: 'form-field-label', id: 'completion-date' %>
+      <%= f.date_field :completion_date, class: 'form-field w-input' %>
+
       <%= f.submit 'Submit', class: 'btn-primary w-button' %>
     <% end %>
   </div>
