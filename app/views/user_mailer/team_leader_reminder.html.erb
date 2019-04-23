@@ -1,10 +1,12 @@
 
-<h1>Dear <%= @recipient.name %></h1>
-<p>
-  You have successfully signed up to example.com,
-  your username is.<br>
-</p>
-<p>
-  To login to the site, just follow this link:
-</p>
+<h4>Dear <%= @recipient.fullname %></h4>
+
+<p>This is current your team members initiatives status</p>
+
+<% @recipient.team_members.each do |team_member| %>
+  <strong>Name: <%= team_member.fullname %></strong></br>
+  <% team_member.initiatives.incompleted.each do |initiative| %>
+    <p><%= link_to initiative.title, initiative_url(initiative) %></p>
+  <% end %>
+<% end %>
 <p>Thanks for joining and have a great day!</p>
