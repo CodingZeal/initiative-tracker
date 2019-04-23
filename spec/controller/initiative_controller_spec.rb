@@ -28,9 +28,8 @@ describe InitiativesController, type: :controller do
     put :update, params: {id: initiative.id, initiative: params}
 
     expect(response).to redirect_to root_path
-    expect(assigns(:incompleted_initiatives)).to eq([initiative2])
-    expect(assigns(:completed_initiatives)).to eq([initiative])
   end
+  
   it "sees own initiatives only" do
     get :index
     expect(assigns(:incompleted_initiatives)).to eq([initiative, initiative2])

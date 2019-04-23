@@ -1,0 +1,17 @@
+<div class='w-form'>
+  <br/>
+  <%= form_for([@team_member, @initiative, @initiative.notes.build]) do |f| %>
+
+    <% if @note&.errors&.any? %>
+      <ul>
+      <% @note.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    <% end %>
+
+    <%= f.text_area :body, maxlength: '5000', placeholder: 'Add a note here...', class: 'textarea w-input' %>
+    <%= f.submit 'Add Note', class: 'btn-note' %>
+    <%= link_to "Back", user_initiatives_path(@team_member), class: 'btn-note' %>
+  <% end %>
+</div>

@@ -12,4 +12,9 @@ FactoryBot.define do
     email 'email@email.com'
     password '123456'
   end
+
+  factory :note do
+    body 'Note Test'
+  end
+
 end

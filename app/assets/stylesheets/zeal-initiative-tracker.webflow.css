@@ -594,6 +594,7 @@ h5 {
 
 .no-link {
   text-decoration: none;
+  color: #333;
 }
 
 .check-box-completion {
@@ -729,6 +730,16 @@ h5 {
   color: #000;
 }
 
+.btn-note{
+  margin-right: 5px;
+  padding: 5px 5px;
+  font-size: 1em;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #aaa;
+  border: 2px solid #ffb648;
+  border-radius: 20px;
+}
 .nav-btn-color {
   color : #ffb648;
 }

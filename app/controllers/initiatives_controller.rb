@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
 class InitiativesController < ApplicationController
-  before_action :find_initiative, only: [:edit, :update, :destroy]
+  before_action :find_initiative, only: [:edit, :show, :update, :destroy]
   before_action :authenticate_user!
+  before_action :populate_initiative_sets, only: [:index, :team_members_initiatives]
 
-  def index
-    populate_initiative_sets
+  def index  
+  end
+
+  def team_members_initiatives
+    render :index
+  end
+
+  def show
   end
 
   def new
@@ -15,8 +22,7 @@ class InitiativesController < ApplicationController
   def create
     @initiative = current_user.initiatives.build(initiative_params)
     if @initiative.save
-      populate_initiative_sets
-      redirect_to :initiatives
+      redirect_to root_path
     else
       render :new
     end
@@ -27,7 +33,6 @@ class InitiativesController < ApplicationController
 
   def update
     if @initiative.update(initiative_params)
-      populate_initiative_sets
       redirect_to root_path
     else
       render :edit
@@ -40,24 +45,38 @@ class InitiativesController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   private
-  
+
   def initiative_params
     params.require(:initiative).permit(:title, :description, :target_date, :completion)
   end
-  
+
   def find_initiative
-    @initiative = current_user.initiatives.find_by_id(params[:id])
-    
+    @initiative = team_member.initiatives.find(params[:id])
+
     if @initiative.nil?
-      flash[:notice] = "Route does not exist. Please check your initiative route."
+      flash[:notice] = "Initiative not found"
       redirect_to root_path
     end
   end
 
   def populate_initiative_sets
-    @completed_initiatives = Initiative.where(user_id: current_user).completed
-    @incompleted_initiatives = Initiative.where(user_id: current_user).incompleted
+    if team_member.nil?
+      flash[:notice] = "Initiative not found"
+      redirect_to root_path
+    else
+      @completed_initiatives = @team_member.initiatives.completed
+      @incompleted_initiatives = @team_member.initiatives.incompleted
+    end
+  end
+
+  def team_member
+    @team_member ||= 
+      if params[:user_id].blank?
+        current_user
+      else
+        User.find(params[:user_id]) if current_user.team_members.pluck(:id).include?(params[:user_id].to_i)
+      end
   end
 end
