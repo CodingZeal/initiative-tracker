@@ -1,4 +1,9 @@
 <br>
-<strong><%= note.user.fullname %></strong> sent a note <%= time_ago_in_words(note.created_at) %> ago : 
+<strong><%= note.user.fullname %></strong> sent a note <%= time_ago_in_words(note.created_at) %> ago :
 <span> <%= note.body %></span>
+<% if current_user != @team_member and params[:id].present? %>
+    <%= link_to user_initiative_note_path(@team_member,params[:id],note), method: :delete, data: { confirm: "Are you sure you would like to delete the note?" }, :class => "no-link", :id => "delete-note-#{note.id}" do %>
+      <%= image_tag "icon-delete.svg" %>
+    <% end %>
+  <% end %>
 <br>
