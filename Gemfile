@@ -68,3 +68,4 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'devise'
 gem 'rails_12factor', group: :production
 gem "launchy", "~> 2.4", group: :development
+gem 'sendgrid-ruby'

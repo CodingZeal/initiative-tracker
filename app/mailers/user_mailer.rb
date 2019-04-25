@@ -1,10 +1,12 @@
 class UserMailer < ApplicationMailer
-  edfault from: 'notifications@codingzeal.com'
+  default from: 'notifications@codingzeal.com'
 
   def self.send_team_leader_reminder
     @team_leaders = User.where(id: User.all.pluck(:team_leader_id).compact.uniq)
 
     @team_leaders.each do |team_leader|
+      next unless team_leader.team_members.select { |tm| tm.initiatives.incompleted.any? }.any?
+
       team_leader_reminder(team_leader).deliver
     end
   end
