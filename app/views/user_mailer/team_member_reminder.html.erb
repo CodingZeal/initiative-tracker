@@ -1,0 +1,9 @@
+
+<h4>Dear <%= @recipient.fullname %></h4>
+
+<p>Please view your current initiative status below:</p>
+
+    <% @recipient.initiatives.incompleted.each do |initiative| %>
+      <p><%= link_to initiative.title, root_url %></p>
+    <% end %>
+<p>Never Give Up!</p>
