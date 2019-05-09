@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require Rack::Request::Helpers
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -94,5 +95,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { :host => self.request.base_url }
+  config.action_mailer.default_url_options = { :host => base_url }
 end
