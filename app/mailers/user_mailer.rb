@@ -14,8 +14,7 @@ class UserMailer < ApplicationMailer
   def team_leader_reminder(recipient)
     @recipient = recipient
 
-    email_with_name = %("#{@recipient.fullname}" <#{@recipient.email}>)
-    mail(to: email_with_name, subject: "Monthly team members' initiatives reminder")
+    mail(to: email_with_name(recipient), subject: "Monthly team members' initiatives reminder")
   end
   
   def self.send_team_member_reminder
@@ -31,9 +30,12 @@ class UserMailer < ApplicationMailer
   def team_member_reminder(recipient)
     @recipient = recipient
 
-    email_with_name = %("#{@recipient.fullname}" <#{@recipient.email}>)
-    mail(to: email_with_name, subject: "Monthly #{@recipient.fullname}'s initiatives reminder")
+    mail(to: email_with_name(recipient), subject: "Monthly #{@recipient.fullname}'s initiatives reminder")
   end
   
+  private
   
+  def email_with_name(recipient)
+    %("#{recipient.fullname}" <#{recipient.email}>)
+  end
 end
