@@ -4,6 +4,6 @@
 <p>Please view your current initiative status below:</p>
 
     <% @recipient.initiatives.incompleted.each do |initiative| %>
-      <p><%= link_to initiative.title, root_url(only_path: true) %>, target date : <%= initiative.target_date.to_s(:long_ordinal) %></p>
+      <p><%= link_to initiative.title, root_url %>, target date : <%= initiative.target_date.to_s(:long_ordinal) %></p>
     <% end %>
 <p>Never Give Up!</p>
