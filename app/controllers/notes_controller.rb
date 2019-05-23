@@ -13,6 +13,7 @@ before_action :find_initiative, only: [:index, :new, :create, :destroy]
     @note = @initiative.notes.build(note_params.merge(user_id: current_user.id))
 
     if @note.save
+      UserMailer.team_leader_new_note_reminder(team_member, @initiative, @note).deliver
       redirect_to user_initiative_path(team_member, @initiative)
     else
       render 'initiatives/show'

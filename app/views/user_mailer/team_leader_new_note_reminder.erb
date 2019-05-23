@@ -1,0 +1,9 @@
+
+<h4>Dear <%= @recipient.fullname %></h4>
+
+<p>Your team leader left a note in your initiative.</p>
+
+  <p>Team leader's note : <%= @note.body %></p>
+  <p><%= link_to @initiative.title, root_url %>, target date : <%= @initiative.target_date.to_s(:long_ordinal) %></p>
+
+<p>Never Give Up!</p>
