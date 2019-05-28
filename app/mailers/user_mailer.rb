@@ -33,6 +33,14 @@ class UserMailer < ApplicationMailer
     mail(to: email_with_name(recipient), subject: "Monthly #{@recipient.fullname}'s initiatives reminder")
   end
   
+  def team_leader_new_note_reminder(recipient, initiative, note)
+    @recipient = recipient
+    @initiative = initiative
+    @note = note
+    
+    mail(to: email_with_name(recipient), subject: "Your team leader left a note in your initiative")
+  end
+  
   private
   
   def email_with_name(recipient)
