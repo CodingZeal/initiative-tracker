@@ -28,6 +28,7 @@ require 'rspec/rails'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
+ActionMailer::Base.delivery_method = :test
 ActiveRecord::Migration.maintain_test_schema!
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 RSpec.configure do |config|

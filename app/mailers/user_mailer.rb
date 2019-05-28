@@ -14,7 +14,36 @@ class UserMailer < ApplicationMailer
   def team_leader_reminder(recipient)
     @recipient = recipient
 
-    email_with_name = %("#{@recipient.fullname}" <#{@recipient.email}>)
-    mail(to: email_with_name, subject: "Monthly team members' initiatives reminder")
+    mail(to: email_with_name(recipient), subject: "Monthly team members' initiatives reminder")
+  end
+  
+  def self.send_team_member_reminder
+    @recipients = User.all
+    
+    @recipients.each do |recipient|
+      next unless recipient.initiatives.incompleted.any?
+      
+      team_member_reminder(recipient).deliver
+    end
+  end
+  
+  def team_member_reminder(recipient)
+    @recipient = recipient
+
+    mail(to: email_with_name(recipient), subject: "Monthly #{@recipient.fullname}'s initiatives reminder")
+  end
+  
+  def team_leader_new_note_reminder(recipient, initiative, note)
+    @recipient = recipient
+    @initiative = initiative
+    @note = note
+    
+    mail(to: email_with_name(recipient), subject: "Your team leader left a note in your initiative")
+  end
+  
+  private
+  
+  def email_with_name(recipient)
+    %("#{recipient.fullname}" <#{recipient.email}>)
   end
 end
