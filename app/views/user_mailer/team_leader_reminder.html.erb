@@ -1,0 +1,14 @@
+
+<h4>Dear <%= @recipient.fullname %></h4>
+
+<p>Please view your current team member's initiative status below:</p>
+
+<% @recipient.team_members.each do |team_member| %>
+  <% if team_member.initiatives.incompleted.present? %>
+    <strong>Name: <%= team_member.fullname %></strong></br>
+    <% team_member.initiatives.incompleted.each do |initiative| %>
+      <p><%= link_to initiative.title, user_initiative_url(team_member, initiative) %></p>
+    <% end %>
+  <% end %>
+<% end %>
+<p>Never Give Up!</p>

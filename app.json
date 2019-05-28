@@ -1,7 +1,11 @@
 {
   "name": "initiative-tracker",
   "scripts": {},
-  "env": {},
+  "env": {
+    "HEROKU_APP_NAME": {
+    "required": true
+    }
+  },
   "formation": {},
   "addons": [
     "heroku-postgresql"
