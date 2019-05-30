@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   devise :database_authenticatable
-  attr_accessor :password
   
   validates :fullname, presence: true
   validates :email, presence: true
