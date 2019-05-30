@@ -38,7 +38,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    params[:user].delete(:password) if params[:user][:password].blank?
     if @user.update(user_params)
+      flash[:notice] = "#{@user.fullname}'s information was successfully edited"
       redirect_to :users
     else
       render :edit

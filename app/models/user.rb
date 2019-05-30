@@ -1,9 +1,11 @@
 class User < ApplicationRecord
   devise :database_authenticatable
+  attr_accessor :password
   
   validates :fullname, presence: true
   validates :email, presence: true
-  validates :password, presence: true
+  validates :password, presence: true, on: :create
+  validates :password, presence: true, on: :update, if: :should_validate?
 
   validates_uniqueness_of :email
 
@@ -12,4 +14,9 @@ class User < ApplicationRecord
   has_many :notes, dependent: :destroy
   
   belongs_to :team_leader, class_name: "User", required: false
+  
+  private
+  def should_validate?
+    new_record? || !password.blank?
+  end
 end
