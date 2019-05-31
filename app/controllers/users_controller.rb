@@ -38,8 +38,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    params[:user].delete(:password) if params[:user][:password].blank?
-    if @user.update(user_params)
+    if user_info_update
       flash[:notice] = "#{@user.fullname}'s information was successfully edited"
       redirect_to :users
     else
@@ -61,5 +60,13 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:fullname, :email, :is_admin, :team_leader_id, :password)
+    end
+    
+    def user_info_update
+      if params[:user][:password].blank?
+        @user.update_without_password(user_params)
+      else
+        @user.update(user_params)
+      end
     end
 end
