@@ -3,7 +3,7 @@ class User < ApplicationRecord
   
   validates :fullname, presence: true
   validates :email, presence: true
-  validates :password, presence: true
+  validates :password, presence: true, on: :create
 
   validates_uniqueness_of :email
 
@@ -12,4 +12,5 @@ class User < ApplicationRecord
   has_many :notes, dependent: :destroy
   
   belongs_to :team_leader, class_name: "User", required: false
+
 end

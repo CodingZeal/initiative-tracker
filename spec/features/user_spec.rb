@@ -59,13 +59,11 @@ feature 'Admin creates a new user' do
       expect(page).to have_content('TestB')
       expect(page).to_not have_content('TestA')
     end
-    scenario 'can not edit user without fullname, email & password' do
+    scenario 'can not edit user without fullname, email' do
       visit edit_user_path(@user, user)
       fill_in 'Full Name', with: ''
       fill_in 'Email', with: ''
-      fill_in 'Password', with: ''
       click_button 'Submit'
-      expect(page).to have_content("Password can't be blank")
       expect(page).to have_content("Email can't be blank")
       expect(page).to have_content("Fullname can't be blank")
     end
